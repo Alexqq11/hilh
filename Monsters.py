@@ -50,14 +50,15 @@ class Monster:
         y = self.Y
         w = self.Width
         h = self.Height
-        return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y - h), g.Point(x, y - h))
+        return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def refresh(self):
-        # TODO write full effects for monster over time (remember : here will be  updates param incity)
-        if self.Health < 1:
-            self.Alive = False
-            self.X = -1
-            self.Y = -1
+        if self.Alive:
+            self.Polygon = self._init_polygon()                 # TODO write full effects for monster over time (remember : here will be  updates param incity)
+            if self.Health < 1:
+                self.Alive = False
+                self.X = -1
+                self.Y = -1
     """
     def death
     def update(self):

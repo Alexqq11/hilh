@@ -38,7 +38,7 @@ class Tower:
         x = self.X + (self.Width + 1) // 2
         y = self.Y + (self.Height + 1) // 2
         r = self.Abilities.AttacRadious + (((self.Width + 1) // 2) + ((self.Height + 1) // 2) + 1) // 2
-        return g.ellipse.Circle(g.Point(x, y), r)
+        return g.polygon.RegularPolygon(g.Point(x,y), r, 4)#g.ellipse.Circle(g.Point(x, y), r)
 
     def in_screen(self, window_width, window_height):
         return ((self.X >= 0) and (self.X + self.Width < window_width) and

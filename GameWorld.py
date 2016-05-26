@@ -1,6 +1,7 @@
 import Towers
 import Monsters
 import Player
+import sympy.geometry as g
 
 
 class GameWorld:
@@ -20,13 +21,15 @@ class GameWorld:
 
         a.move_forward(1)
         # a.move_down(1)
-        b.refresh([a])  # todo write full wawes class
         a.refresh()
+        b.refresh([a])  # todo write full wawes class
+
         if not a.Alive:
             self.Player.Momey += a.Money
             a.Money -= a.Money
         print(a.X, " ", a.Y, " ", a.Health, self.Player.Momey)
         self.game_map = [['_' for x in range(self.width)] for y in range(self.height)]  # deepcopy(self.game_map_static)
+
         if a.in_screen(self.width, self.height):
             for x in range(a.X, a.X + a.Width):
                 for y in range(a.Y, a.Y + a.Height):
