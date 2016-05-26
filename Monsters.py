@@ -21,6 +21,8 @@ class MonsterEffects:
         self.Slowing = 5
         self.Direction = 0
         self.Cityzen_Anigilation = 1
+        self.Tower_peer_moment_attack = [] # make it with list
+
 
 
 class Monster:
@@ -59,11 +61,7 @@ class Monster:
                 self.Alive = False
                 self.X = -1
                 self.Y = -1
-    """
-    def death
-    def update(self):
-        i
-    """
+
     def _movement(self, x, y):
         if self.Alive:
             self.X += x

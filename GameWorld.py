@@ -19,11 +19,6 @@ class GameWorld:
         a = self.test_monster
         b = self.test_tower
 
-        a.move_forward(1)
-        # a.move_down(1)
-        a.refresh()
-        b.refresh([a])  # todo write full wawes class
-
         if not a.Alive:
             self.Player.Momey += a.Money
             a.Money -= a.Money
@@ -33,13 +28,17 @@ class GameWorld:
         if a.in_screen(self.width, self.height):
             for x in range(a.X, a.X + a.Width):
                 for y in range(a.Y, a.Y + a.Height):
-                    self.game_map[x][y] = a.Texture
+                    self.game_map[y][x] = a.Texture  # !!!
 
         if b.in_screen(self.width, self.height):
             for x in range(b.X, b.X + b.Width):
                 for y in range(b.Y, b.Y + b.Height):
-                    self.game_map[x][y] = b.Texture
+                    self.game_map[y][x] = b.Texture # !!!
 
         for kernel in b.Kernels:
             if kernel.in_screen(self.width, self.height):
-                self.game_map[kernel.X][kernel.Y] = kernel.Texture
+                self.game_map[kernel.Y][kernel.X] = kernel.Texture
+
+        b.refresh([a])  # todo write full wawes class
+        a.move_forward(1)
+        a.refresh()

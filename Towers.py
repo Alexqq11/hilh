@@ -31,14 +31,13 @@ class Tower:
         self.Enemy = "all"
         self.AttackZone = self._init_attack_zone()
         self.Kernels = deque()
-        # self.Amount_attacked_monsters = 0
         self.Attacked_monsters = deque()
 
     def _init_attack_zone(self):
         x = self.X + (self.Width + 1) // 2
         y = self.Y + (self.Height + 1) // 2
         r = self.Abilities.AttacRadious + (((self.Width + 1) // 2) + ((self.Height + 1) // 2) + 1) // 2
-        return g.polygon.RegularPolygon(g.Point(x,y), r, 4)#g.ellipse.Circle(g.Point(x, y), r)
+        return g.polygon.RegularPolygon(g.Point(x, y), r, 4)
 
     def in_screen(self, window_width, window_height):
         return ((self.X >= 0) and (self.X + self.Width < window_width) and
@@ -75,6 +74,8 @@ class Tower:
                     self.attack(monster)
                     self.Attacked_monsters.append(monster)
         self.refresh_kernels()
+
+
 
 
 class Kernel:  # don't panic
@@ -124,15 +125,15 @@ class Kernel:  # don't panic
         if len(self.Target.Polygon.intersection(self.CollisionZone)) > 0:
             self.in_target()
 
-    def in_target(self):
-        print(self.Target.Health)
-        self.Target.Health += self.Target.Armor.Physical - self.ParentTower.Abilities.PhysicalAttac  # TODO write full method of attack with all abbilities
-        self.Alive = False
-
     def refresh(self):
         if not self.ParentTower.in_checker_zone(self.Target):
             self.Alive = False
 
         if self.Alive:
             self.CollisionZone = g.Point(self.X, self.Y)
-            self.to_target()  # TODO in future make queue to kernels
+            self.to_target()
+
+    def in_target(self): ### monster uder ATTA
+        self.Target.EffectsList.Tower_peer_moment_attack.append(self.ParentTower.Abilities.PhysicalAttac)
+
+        self.Alive = False

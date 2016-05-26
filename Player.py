@@ -9,4 +9,3 @@ class Player():
         self.WaweTimeout = 20
         self.Level = 1
         self.KilledMonsters = 0
-

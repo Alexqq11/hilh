@@ -1,0 +1,142 @@
+#### arhitecture game ideas
+###mob part###
+class MobArmor():
+	Froze
+	Fire
+	Poison
+	Electricity
+	Physical
+
+class MobEffects():
+	Frozen;
+	Fired;
+	Poisoned;
+	Electricitied;
+	Slowing
+	Direction
+	CityzenAnigilation
+
+class MobPerson():
+	X
+	Y
+	Width
+	Height
+	Speed
+	Live
+	Armor 
+	Price
+	Texture
+	EffectsList
+### Towers Part ###
+class TowerAbilities():
+	PhysicalAttac
+	FrozeAttac
+	FireAttac
+	PoisonAttac
+	ElectricityAttac
+	SlowingChange
+	DirectionChange
+	AttacRadious
+class Tower():
+	X
+	Y
+	Width
+	Height
+	Abilities
+	Price
+	Level
+	Locked
+	Texture
+### Player part ###
+class Player():
+	Citizens
+	Momey
+	Expiriens
+	TowerAmount
+	WawesAmount
+	LivedWawes
+	WaweTimeout
+	Level
+	TowerShop 
+class TowerBranch():# think about towerShop and Tower Branch in shop
+	type1  #линейки башен
+	UnlokedPlayerLevel
+	Locked
+	UnlockedTowerLevel
+	UnlockedTowerBranchExpirience 
+
+class TowerShop():
+	TowersTypes
+	TotalUnlockedTowers
+	Expiriens
+# map Part;
+class cellTriger():# why not
+
+class Cell():
+	X
+	Y
+	Width
+	Height
+	CellType # three types: monster way, tower place , shit with stones
+	MobEffects # it is can be some trigers place
+	Texture
+
+class GameMap():
+	windowHeight
+	windowWidth
+	cell<list> 
+	def gen():
+		pass
+class Game():
+	Map
+	TowerShop
+	Player
+	Towers
+	Mobs 
+pass
+### game
+
+task for game:
+	console edition:
+		write user command interface
+			write arg parse
+			game pause
+			game reset
+			map constructure
+		write monster part
+			Ai
+			monster wawe
+			monster full-uder-attack-back-end 
+			textures
+		write tower part
+			full-attack-back-end
+			thinking about tower update mechanics
+				may be it was update configs
+				and method that is read tower config
+				and aplly it
+			texture
+		write player binding with gameWorld
+			monsters
+			Wawes
+			towers
+			towerShop
+			thinling about level expiriense and money
+		allot off Tests
+
+	thinling about cells and their modification with towers		
+	gui part
+		write size configuration for game
+		make textures
+		write game interface
+		write user/player interface
+		write levels interface
+		write mapgen interface
+		write towershops interface  
+
+
+
+		
+
+
+
+
