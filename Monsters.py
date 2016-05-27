@@ -2,6 +2,7 @@ import sympy.geometry as g
 
 monster_armor1 = {"Froze": 0, "Fire": 0, "Poison": 0, "Electricity": 0, "Physical": 0}
 MAX_MONSTER_SPEED = 21
+MIN_MONSTER_SPEED = 21
 
 
 class MonsterArmor:
@@ -71,6 +72,8 @@ class MonsterEffects:
         self._effects_collecting()
         self._effects_calculation()
         self.Monster.Health -= self.Damage
+
+        self.Monster.Speed_now = self.Monster.Speed_base - int(self.Slowing + 0.5)  # TODO make armotization for this
         self._tick_effects_update()
 
 
@@ -82,7 +85,8 @@ class Monster:
         self.Width = 2
         self.Height = 2
         self.Polygon = self._init_polygon()
-        self.Speed = 1  # TODO  MAKE GETTER And setter
+        self.Speed_base = 5
+        self.Speed_now = self._Speed_base
         self.Health = 1000
         self.Lived_ticks = 0
         self.Alive = True
@@ -90,10 +94,35 @@ class Monster:
         self.Money = 10
         self.Texture = "MMM"
         self.Effects = MonsterEffects(self)
-        self.Speed_modificator = 0
         self.InCity = False
         self.Type = "all"
-        self.id = 0
+        self.Ai_points = 0
+
+    @property
+    def Speed_base(self):
+            return self._Speed_base
+
+    @Speed_base.setter
+    def Speed_base(self, Speed_base):
+        if Speed_base > MAX_MONSTER_SPEED - 1:
+            self._Speed_base = MAX_MONSTER_SPEED - 1
+        elif Speed_base < -MIN_MONSTER_SPEED:
+            self._Speed_base = -MIN_MONSTER_SPEED
+        else:
+            self._Speed_base = Speed_base
+
+    @property
+    def Speed_now(self):
+            return self._Speed_now
+
+    @Speed_now.setter
+    def Speed_now(self, Speed_now):
+        if MAX_MONSTER_SPEED - Speed_now < 1:
+            self._Speed_now = 1
+        elif Speed_now > MIN_MONSTER_SPEED + MAX_MONSTER_SPEED - 2:
+            self._Speed_now = MIN_MONSTER_SPEED + MAX_MONSTER_SPEED - 2
+        else:
+            self._Speed_now = MAX_MONSTER_SPEED - Speed_now
 
     def is_can_be_attacked(self, typeof):
         return (typeof == "all" or typeof == self.Type) and self.Alive
@@ -110,12 +139,18 @@ class Monster:
             self.Polygon = self._init_polygon()
             self.Effects.refresh_effects()
             self.Lived_ticks += 1
+            self.Lived_ticks %= 100
+            self.refresh_ai()
             if self.Health < 1:  # (remember : here will be  updates param incity)
                 self.Alive = False
                 self.X = -1
                 self.Y = -1
-            if self.World.Draw_system.Draw_tick % (MAX_MONSTER_SPEED - self.Speed) == 0:  # check this
-                self.move_forward(1)
+             # check this
+
+    def refresh_ai(self):
+        if self.World.Draw_system.Draw_tick % self.Speed_now == 0:
+            self.move_forward(1)
+            self.Ai_points = 0
 
     def _movement(self, x, y):
         if self.Alive:

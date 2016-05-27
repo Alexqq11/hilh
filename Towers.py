@@ -1,8 +1,8 @@
 import sympy.geometry as g
 from collections import deque
 
-tower_abilities1 = {"1": 1, "PhysicalAttack": 1, "attackRadius": 4, "Attack_speed": 2}
-MAX_TOWER_SPEED_ATTACK = 10
+tower_abilities1 = {"1": 1, "PhysicalAttack": 1, "attackRadius": 4, "Attack_speed": 1}
+MAX_TOWER_SPEED_ATTACK = 11
 
 
 class TowerAbilities:
@@ -17,6 +17,19 @@ class TowerAbilities:
         self.Attack_radius = tower_abilities["attackRadius"]
         self.Attack_speed = tower_abilities["Attack_speed"]
         self.Attacked_monsters_limit = 2  # todo max 6 monsters under attack
+
+    @property
+    def Attack_speed(self):
+            return self._Attack_speed
+
+    @Attack_speed.setter
+    def Attack_speed(self, Attack_speed):
+        if 1 > MAX_TOWER_SPEED_ATTACK - Attack_speed:
+            self._Attack_speed = 1
+        elif Attack_speed < 1:
+            self._Attack_speed = 11
+        else:
+            self._Attack_speed = MAX_TOWER_SPEED_ATTACK - Attack_speed
 
 
 class Tower:
@@ -65,7 +78,7 @@ class Tower:
         self.Kernels = d
 
     def refresh(self, monsters):
-        if self.World.Draw_system.Draw_tick % MAX_TOWER_SPEED_ATTACK - self.Abilities.Attack_speed == 0:  # check this
+        if self.World.Draw_system.Draw_tick % self.Abilities.Attack_speed == 0:  # check this
             self._refresh(monsters)
 
     def _refresh(self, monsters):
