@@ -1,6 +1,7 @@
 import sympy.geometry as g
 
 monster_armor1 = {"Froze": 0, "Fire": 0, "Poison": 0, "Electricity": 0, "Physical": 0}
+MAX_MONSTER_SPEED = 21
 
 
 class MonsterArmor:
@@ -74,13 +75,14 @@ class MonsterEffects:
 
 
 class Monster:
-    def __init__(self, x, y):
+    def __init__(self, world, x, y):
+        self.World = world
         self.X = x
         self.Y = y
         self.Width = 2
         self.Height = 2
         self.Polygon = self._init_polygon()
-        self.Speed = 1
+        self.Speed = 1  # TODO  MAKE GETTER And setter
         self.Health = 1000
         self.Lived_ticks = 0
         self.Alive = True
@@ -99,8 +101,8 @@ class Monster:
     def _init_polygon(self):
         x = self.X
         y = self.Y
-        w = self.Width
-        h = self.Height
+        w = self.Width - 1
+        h = self.Height - 1
         return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def refresh(self):
@@ -112,6 +114,8 @@ class Monster:
                 self.Alive = False
                 self.X = -1
                 self.Y = -1
+            if self.World.Draw_system.Draw_tick % (MAX_MONSTER_SPEED - self.Speed) == 0:  # check this
+                self.move_forward(1)
 
     def _movement(self, x, y):
         if self.Alive:

@@ -1,7 +1,8 @@
 import sympy.geometry as g
 from collections import deque
 
-tower_abilities1 = {"1": 1, "PhysicalAttack": 1, "attackRadius": 4}
+tower_abilities1 = {"1": 1, "PhysicalAttack": 1, "attackRadius": 4, "Attack_speed": 2}
+MAX_TOWER_SPEED_ATTACK = 10
 
 
 class TowerAbilities:
@@ -14,16 +15,18 @@ class TowerAbilities:
         self.Slowing_change = tower_abilities["1"]
         self.Direction_change = tower_abilities["1"]
         self.Attack_radius = tower_abilities["attackRadius"]
+        self.Attack_speed = tower_abilities["Attack_speed"]
         self.Attacked_monsters_limit = 2  # todo max 6 monsters under attack
 
 
 class Tower:
-    def __init__(self, x, y):
+    def __init__(self, world, x, y):
+        self.World = world
         self.X = x
         self.Y = y
         self.Width = 3
         self.Height = 3
-        self.Abilities = TowerAbilities(tower_abilities1)  # TODO intial configs
+        self.Abilities = TowerAbilities(tower_abilities1)  # TODO initial configs
         self.Price = 10
         self.Level = 1
         self.Locked = 0
@@ -33,18 +36,21 @@ class Tower:
         self.Kernels = deque()
         self.Attacked_monsters = deque()
 
-    def _init_attack_zone(self):
-        x = self.X + (self.Width + 1) // 2
-        y = self.Y + (self.Height + 1) // 2
-        r = self.Abilities.Attack_radius + (((self.Width + 1) // 2) + ((self.Height + 1) // 2) + 1) // 2
-        return g.polygon.RegularPolygon(g.Point(x, y), r, 4)
+    def _init_attack_zone(self):  # TODO this to come up with another way
+        x = self.X - self.Abilities.Attack_radius
+        y = self.Y - self.Abilities.Attack_radius
+        w = self.Width - 1 + 2 * self.Abilities.Attack_radius
+        h = self.Height - 1 + 2 * self.Abilities.Attack_radius
+        return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def in_screen(self, window_width, window_height):
         return ((self.X >= 0) and (self.X + self.Width < window_width) and
                 (self.Y >= 0) and (self.Y + self.Height < window_height))
 
     def in_checker_zone(self, monster):
-        return len(monster.Polygon.intersection(self.Attack_zone)) and monster.is_can_be_attacked(self.Enemy) > 0
+        return (len(monster.Polygon.intersection(self.Attack_zone)) > 0 or
+                len(self.Attack_zone.intersection(monster.Polygon)) > 0 or
+                self.Attack_zone.encloses(monster.Polygon)) and monster.is_can_be_attacked(self.Enemy)
 
     def attack(self, monster):
         if self.in_checker_zone(monster):  # may be in the future we will don't use this checker
@@ -59,6 +65,10 @@ class Tower:
         self.Kernels = d
 
     def refresh(self, monsters):
+        if self.World.Draw_system.Draw_tick % MAX_TOWER_SPEED_ATTACK - self.Abilities.Attack_speed == 0:  # check this
+            self._refresh(monsters)
+
+    def _refresh(self, monsters):
         d = deque()
         for x in range(0, len(self.Attacked_monsters)):  # caution
             monster = self.Attacked_monsters.pop()
@@ -78,8 +88,8 @@ class Tower:
 
 class Kernel:  # don't panic
     def __init__(self, tower, monster):
-        self.X = (tower.Width + 1) // 2  # stupid console
-        self.Y = (tower.Width + 1)
+        self.X = tower.X - 1 + (tower.Width + 1) // 2  # stupid console
+        self.Y = tower.Y - 1 + (tower.Height + 1) // 2
         self.Width = 0
         self.Height = 0
         self.Speed = 4
@@ -107,20 +117,21 @@ class Kernel:  # don't panic
             step_y = 1
         else:
             step_y = -1
-        while (abs(progress_x) + abs(progress_y)) < self.Speed:
-            if abs(self.Target.X - self.X) < abs(self.Target.Y - self.Y):
-                self.Y += step_y
-                progress_y += step_y
-                self.Collision_zone = g.Point(self.X, self.Y)
-            else:
-                self.X += step_x
-                progress_x += step_x
-                self.Collision_zone = g.Point(self.X, self.Y)
-            if abs(self.Target.X - self.X) + abs(self.Target.Y - self.Y) < self.Target.Width + self.Target.Height:
-                self.check_for_collision()
+        # while (abs(progress_x) + abs(progress_y)) < self.Speed:
+        if abs(self.Target.X - self.X) < abs(self.Target.Y - self.Y):
+            self.Y += step_y
+            progress_y += step_y
+            self.Collision_zone = g.Point(self.X, self.Y)
+        else:
+            self.X += step_x
+            progress_x += step_x
+            self.Collision_zone = g.Point(self.X, self.Y)
+        if abs(self.Target.X - self.X) + abs(self.Target.Y - self.Y) < self.Target.Width + self.Target.Height:
+            self.check_for_collision()
 
     def check_for_collision(self):
-        if len(self.Target.Polygon.intersection(self.Collision_zone)) > 0:
+        if self.Target.Polygon.encloses_point(self.Collision_zone) or \
+                len(self.Target.Polygon.intersection(self.Collision_zone)) > 0:
             self.in_target()
 
     def refresh(self):
