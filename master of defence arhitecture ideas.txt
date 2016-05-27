@@ -103,6 +103,8 @@ task for game:
 			game pause
 			game reset
 			map constructure
+			save game / loadGame
+				pickle -watch about it
 		write monster part
 			Ai
 			monster wawe
@@ -117,7 +119,7 @@ task for game:
 			texture
 		write player binding with gameWorld
 			monsters
-			Wawes
+			Wawes 
 			towers
 			towerShop
 			thinling about level expiriense and money
@@ -132,6 +134,19 @@ task for game:
 		write levels interface
 		write mapgen interface
 		write towershops interface  
+
+
+
+    """
+        small dock in the feature it will be in the official documentation
+        **_dmg = abs (armor.param - monster_eff )(if more than zero in bracket  - dmg is zero , else this)
+         and nex foreach counting bonus damage and then mege it
+
+El dmg:(physical_dmg + 0.76(el_dmg);(frost_dmg + 0.193(el dmg));(fire_dmg + 0.46(el_dmg)(poison_dmg - 0.17(el.dmg))
+Poison_dmg:(phys_dmg + 0.83(pois); fire_dmg + 0,08(pois),cold + 0,el_dmg - 0,17(pois))
+froze_dmf: (phys_dmg + 0,53(froze), fire_dmg - 1(froze), poison - 0,5(froze),el dmg + 0.33(froze) )
+fire_ dmg: (phys_ dmg + 0,63(fire), poison - 0,13(fire), froze - 1(fire dmg), el_ dmg - 0.13(fire))
+    """
 
 
 
