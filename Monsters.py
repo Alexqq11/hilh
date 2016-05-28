@@ -4,25 +4,27 @@ import sympy.geometry as g
 class MonsterWay:  # todo normal point now tuple with pairs x y
     def __init__(self, monster_way1):
         self.Way = monster_way1
-        self.Lobby = 40
-        self.City = len(monster_way1) - 20
-		
+        self.Lobby = 2
+        self.City = len(monster_way1) - 2
+
     def in_lobby(self, index):
         return index < self.Lobby
-		
+
     def in_city(self, index):
         return index > self.City
-		
+
     def x(self, index):
         return self.Way[index][0]  # todo this safety with processing
 
     def y(self, index):
-        return self.Way[index][0]
+        return self.Way[index][1]
 
 
 monster_armor1 = {"Froze": 0, "Fire": 0, "Poison": 0, "Electricity": 0, "Physical": 0}
 monster_way = MonsterWay(((1,1), (2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),
-                          (12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(18,2),(18,3),(18,3),(18,4)))
+                          (12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(18,2),(18,3),(18,4),(18,5),
+                          (18,6),(18,7),(18,8),(18,9),(18,10),(17,10),(16,10),(15,10),(14,10),(13,10),(12,10),
+                          (11,10),(10,10),(9,10),(8,10),(7,10),(6,10),(5,9),(4,8),(3,8),(2,8),(1,8),(0,8),(-1,8)))
 
 MAX_MONSTER_SPEED = 21
 MIN_MONSTER_SPEED = 21
@@ -89,7 +91,7 @@ class MonsterEffects:
         self.Fire *= 0.44
         self.Electricity *= 0.2
         self.Slowing *= 0.76
-        self.Direction = 1 if self.Monster.Lived_ticks % 7 == 6 else self.Direction
+        self.Direction = 1 if self.Monster.World.Draw_system.Draw_tick % 200 == 0 else self.Direction   # caution with inCity
 
     def refresh_effects(self):
         self._effects_collecting()
@@ -120,7 +122,7 @@ class Monster:
         self.InCity = False
         self.Type = "all"
         self.Ai_points = 0
-        self.Way_position = 0
+        self.Way_position = 8
         self.Monster_way = monster_way
         self.Step = 1  # in future it resizing objects configure
 
@@ -175,7 +177,14 @@ class Monster:
 
     def refresh_ai(self):
         if self.World.Draw_system.Draw_tick % self.Speed_now == 0:
-			self.move()
+            self.Lived_ticks += 1
+            self.Lived_ticks %= 100
+            if self.Monster_way.in_city(self.Way_position):
+                self.InCity = True
+                self.Effects.Direction = 0# todo think  about killing mechanizm
+            if self.Monster_way.in_lobby(self.Way_position):
+                self.Effects.Direction = 1
+            self.move()
 
     def _movement(self, x, y):
         if self.Alive:

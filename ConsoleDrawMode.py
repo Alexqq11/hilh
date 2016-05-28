@@ -22,18 +22,18 @@ class DrawWorldConsole:
             time.sleep(self.World_speed)  # TODO world speed generation
 
     def display_map(self):  # TODO rewrite this with using sys  and draw objects like a progress bars
-        for x in range(0, self.Width):
+        for y in range(0, self.Height):
             print('+' + '---+' * self.Width)
             print('|', sep='', end='')
-            for y in range(0, self.Height):
-                if len(self._Game_map[x][y]) == 1:
-                    print(" " + self._Game_map[x][y] + " ", end='|')
-                elif len(self._Game_map[x][y]) == 2:
-                    print(" " + self._Game_map[x][y], end='|')
+            for x in range(0, self.Width):
+                if len(self._Game_map[y][x]) == 1:
+                    print(" " + self._Game_map[y][x] + " ", end='|')
+                elif len(self._Game_map[y][x]) == 2:
+                    print(" " + self._Game_map[y][x], end='|')
                 else:
-                    print(self._Game_map[x][y][0:3], end='|')
+                    print(self._Game_map[y][x][0:3], end='|')
 
             print()
         print('+' + '---+' * self.Width)
 
-a = DrawWorldConsole(25, 25, 1)
+a = DrawWorldConsole(40, 20, 1)

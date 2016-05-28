@@ -19,9 +19,10 @@ class GameWorld:
         b = self.Test_tower
         c = self.Test_tower_2
         if not a.Alive:
-            self.Player.Momey += a.Money
+            self.Player.Money += a.Money
+
             a.Money -= a.Money
-        print(a.X, " ", a.Y, " ", a.Health, self.Player.Momey)
+        print(a.X, " ", a.Y, " ", a.Health, self.Player.Money)
         self.Game_map = [['_' for x in range(self.Width)] for y in range(self.Height)]  # deepcopy(self.game_map_static)
 
         if a.in_screen(self.Width, self.Height):

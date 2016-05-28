@@ -1,7 +1,7 @@
 class Player:
     def __init__(self):
         self.Citizens = 22
-        self.Momey = 200
+        self.Money = 200
         self.Expiriens = 0
         self.Tower_amount = 0
         self.Waves_amount = 5
