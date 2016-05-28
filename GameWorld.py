@@ -2,7 +2,6 @@ import Towers
 import Monsters
 import Player
 
-
 class GameWorld:
     def __init__(self, draw_system, width, height):
         self.Game_map_static = [['_' for x in range(width)] for y in range(height)]

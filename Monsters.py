@@ -1,6 +1,29 @@
 import sympy.geometry as g
 
+
+class MonsterWay:  # todo normal point now tuple with pairs x y
+    def __init__(self, monster_way1):
+        self.Way = monster_way1
+        self.Lobby = 40
+        self.City = len(monster_way1) - 20
+		
+    def in_lobby(self, index):
+        return index < self.Lobby
+		
+    def in_city(self, index):
+        return index > self.City
+		
+    def x(self, index):
+        return self.Way[index][0]  # todo this safety with processing
+
+    def y(self, index):
+        return self.Way[index][0]
+
+
 monster_armor1 = {"Froze": 0, "Fire": 0, "Poison": 0, "Electricity": 0, "Physical": 0}
+monster_way = MonsterWay(((1,1), (2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),
+                          (12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(18,2),(18,3),(18,3),(18,4)))
+
 MAX_MONSTER_SPEED = 21
 MIN_MONSTER_SPEED = 21
 
@@ -97,6 +120,9 @@ class Monster:
         self.InCity = False
         self.Type = "all"
         self.Ai_points = 0
+        self.Way_position = 0
+        self.Monster_way = monster_way
+        self.Step = 1  # in future it resizing objects configure
 
     @property
     def Speed_base(self):
@@ -149,25 +175,17 @@ class Monster:
 
     def refresh_ai(self):
         if self.World.Draw_system.Draw_tick % self.Speed_now == 0:
-            self.move_forward(1)
-            self.Ai_points = 0
+			self.move()
 
     def _movement(self, x, y):
         if self.Alive:
             self.X += x
             self.Y += y
 
-    def move_forward(self, step):
-        self._movement(step, 0)
-
-    def move_backward(self, step):
-        self._movement(-step, 0)
-
-    def move_up(self, step):
-        self._movement(0, -step)
-
-    def move_down(self, step):
-        self._movement(0, step)
+    def move(self):
+        self.Way_position += self.Step * self.Effects.Direction
+        self.X = self.Monster_way.x(self.Way_position)
+        self.Y = self.Monster_way.y(self.Way_position)
 
     def in_screen(self, window_width, window_height):
         return ((self.X >= 0) and (self.X + self.Width < window_width) and
