@@ -1,3 +1,4 @@
+from collections import deque
 import sympy.geometry as g
 
 
@@ -20,6 +21,37 @@ class MonsterWay:  # todo normal point now tuple with pairs x y
         return self.Way[index][1]
 
 
+class MonsterWave:
+    def __init__(self, world, monster_amount, monster_time_interval):
+        self.Monsters_lobby = deque(Monster(world, -5, -5) for x in range(0, monster_amount))
+        self.Monster_time_interval = monster_time_interval
+        self.Monsters_on_map = []  # deque()
+        self.World = world
+        self.Alive = True
+
+    def add_on_map(self):
+        if self.Monsters_lobby and self.World.Draw_system.Draw_tick % self.Monster_time_interval == 0:
+            self.Monsters_on_map.append(self.Monsters_lobby.popleft())
+
+    def refresh_on_map(self):
+        for monster in self.Monsters_on_map:
+            if monster.Monster_loot.In_city:
+                self.World.Player.Monsters_loots.append(monster.Monster_loot)
+                monster.Health = 0
+            monster.refresh()
+            if not monster.Alive:
+                self.Monsters_on_map.remove(monster)
+
+    def refresh(self):
+        self.add_on_map()
+        self.refresh_on_map()
+        if not(self.Monsters_lobby or self.Monsters_on_map):
+            self.Alive = False
+
+
+
+
+
 monster_armor1 = {"Froze": 0, "Fire": 0, "Poison": 0, "Electricity": 0, "Physical": 0}
 monster_way = MonsterWay(((1,1), (2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),
                           (12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(18,2),(18,3),(18,4),(18,5),
@@ -40,6 +72,15 @@ class MonsterArmor:
         self.Monster = monster
 
 
+class MonsterLoot:
+    def __init__(self, monster):
+        self.Monster = Monster
+        self.Money = 10
+        self.Citizen_annihilation = 1
+        self.Experience = 5
+        self.In_city = False
+
+
 class MonsterEffects:
     def __init__(self, monster):
         self.Froze = 0
@@ -48,7 +89,6 @@ class MonsterEffects:
         self.Electricity = 0
         self.Slowing = 5
         self.Direction = 0
-        self.Citizen_annihilation = 1
         self.Towers_attacks = []
         self.Damage = 0
         self.Monster = monster
@@ -112,17 +152,16 @@ class Monster:
         self.Polygon = self._init_polygon()
         self.Speed_base = 5
         self.Speed_now = self._Speed_base
-        self.Health = 1000
+        self.Health = 100
+        self.Monster_loot = MonsterLoot(self)
         self.Lived_ticks = 0
         self.Alive = True
         self.Armor = MonsterArmor(self, monster_armor1)
-        self.Money = 10
         self.Texture = "MMM"
         self.Effects = MonsterEffects(self)
-        self.InCity = False
         self.Type = "all"
         self.Ai_points = 0
-        self.Way_position = 8
+        self.Way_position = 0
         self.Monster_way = monster_way
         self.Step = 1  # in future it resizing objects configure
 
@@ -180,7 +219,7 @@ class Monster:
             self.Lived_ticks += 1
             self.Lived_ticks %= 100
             if self.Monster_way.in_city(self.Way_position):
-                self.InCity = True
+                self.Monster_loot.In_city = True
                 self.Effects.Direction = 0# todo think  about killing mechanizm
             if self.Monster_way.in_lobby(self.Way_position):
                 self.Effects.Direction = 1

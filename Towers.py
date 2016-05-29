@@ -77,7 +77,8 @@ class Tower:
                 d.append(kernel)  # in this place can be bug
         self.Kernels = d
 
-    def refresh(self, monsters):
+    def refresh(self):
+        monsters = self.World.Monster_wave.Monsters_on_map   # caution
         if self.World.Draw_system.Draw_tick % self.Abilities.Attack_speed == 0:  # check this
             self._refresh(monsters)
 
