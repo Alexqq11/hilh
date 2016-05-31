@@ -28,6 +28,7 @@ class MonsterWave:
         self.Monsters_on_map = []  # deque()
         self.World = world
         self.Alive = True
+        self.monster_way = monster_way
 
     def add_on_map(self):
         if self.Monsters_lobby and self.World.Draw_system.Draw_tick % self.Monster_time_interval == 0:
@@ -131,7 +132,7 @@ class MonsterEffects:
         self.Fire *= 0.44
         self.Electricity *= 0.2
         self.Slowing *= 0.76
-        self.Direction = 1 if self.Monster.World.Draw_system.Draw_tick % 200 == 0 else self.Direction   # caution with inCity
+        self.Direction = 1 if self.Monster.World.Draw_system.Draw_tick % 200 == 0 else self.Direction
 
     def refresh_effects(self):
         self._effects_collecting()
@@ -208,11 +209,10 @@ class Monster:
             self.Lived_ticks += 1
             self.Lived_ticks %= 100
             self.refresh_ai()
-            if self.Health < 1:  # (remember : here will be  updates param incity)
+            if self.Health < 1:
                 self.Alive = False
                 self.X = -1
                 self.Y = -1
-             # check this
 
     def refresh_ai(self):
         if self.World.Draw_system.Draw_tick % self.Speed_now == 0:
@@ -220,7 +220,7 @@ class Monster:
             self.Lived_ticks %= 100
             if self.Monster_way.in_city(self.Way_position):
                 self.Monster_loot.In_city = True
-                self.Effects.Direction = 0# todo think  about killing mechanizm
+                self.Effects.Direction = 0
             if self.Monster_way.in_lobby(self.Way_position):
                 self.Effects.Direction = 1
             self.move()
@@ -236,8 +236,8 @@ class Monster:
         self.Y = self.Monster_way.y(self.Way_position)
 
     def in_screen(self, window_width, window_height):
-        return ((self.X >= 0) and (self.X + self.Width < window_width) and
-                (self.Y >= 0) and (self.Y + self.Height < window_height)) and self.Alive
+        return ((self.X >= 0) and (self.X + self.Width <= window_width) and
+                (self.Y >= 0) and (self.Y + self.Height <= window_height)) and self.Alive
 
     def effect_on_tick(self):
         pass

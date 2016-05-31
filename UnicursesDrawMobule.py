@@ -1,7 +1,7 @@
 from unicurses import *
 import copy
 import GameWorld
-#stdscr = initscr()
+
 
 class MainMenu:
     def __init__(self,main_interface, width, height):
@@ -21,13 +21,13 @@ class MainMenu:
         doupdate()
 
     def _scroll(self, key):
-        if key == ord('w') or key == KEY_UP:
+        if key in [ord('w'), ord('W'), KEY_UP]:
             self.topics_pointer -= 1
-            while(self.topics_pointer  in self.locked_topics):
+            while self.topics_pointer in self.locked_topics:
                 self.topics_pointer -= 1
-        elif key == ord('s') or key == KEY_DOWN:
+        elif key in [ord('S'), ord('s'), KEY_DOWN]:
             self.topics_pointer += 1
-            while(self.topics_pointer  in self.locked_topics):
+            while self.topics_pointer in self.locked_topics:
                 self.topics_pointer += 1
         self.topics_pointer %= len(self.topics)
 
@@ -35,6 +35,7 @@ class MainMenu:
             if self.topics_pointer == 0:
                 if self.game_interface.game_initialized:
                     self.game_interface.game_menu_interface.unblock()
+                    self.game_interface.game_field.unblock()
                     self.locked_topics.append(1)
                     self.game_interface.game_initialized = False
                 self.start_new_game()
@@ -50,9 +51,12 @@ class MainMenu:
 
     def key_event(self, key):
         if self.enabled:
-            if key == ord('w') or key == ord('s') or key == KEY_UP or key == KEY_DOWN:
+            if key in [ord('w'), ord('W'), ord('S'), ord('s'), KEY_UP, KEY_DOWN]:
                 self._scroll(key)
             elif key == 10:
+                self._selected()
+            elif key == 27:
+                self.topics_pointer = 5
                 self._selected()
 
     def disable(self):
@@ -74,12 +78,11 @@ class MainMenu:
             self._refresh()
 
     def _refresh(self):
-
         x = 2
         y = 2
         box(self.menu_window, 0, 0)
         for i in range(0, len(self.topics)):
-            if (self.topics_pointer == i):
+            if self.topics_pointer == i:
                 wattron(self.menu_window, A_REVERSE)
                 mvwaddstr(self.menu_window, y, x, self.topics[i])
                 wattroff(self.menu_window, A_REVERSE)
@@ -107,15 +110,18 @@ class GameStat:
         self.y = 0
         self.width = 130
         self.height = 5
-        self.data_pull = "MONEY: {0}        CITIZENS: {1}      LEVEL: {2}          TIME: {3}      TOWERS: {4}           WAWES: {5}     WAVE LIVES: {6}"
+        #self.data_pull = #"MONEY: {0}        CITIZENS: {1}      LEVEL: {2}          TIME: {3}      TOWERS: {4}           WAWES: {5}     WAVE LIVES: {6}"
         self.game_stat_window = newwin(self.height, self.width, self.y, self.x)
         self.game_stat_panel = new_panel(self.game_stat_window)
+        wbkgd(self.game_stat_window, CYAN_RED)
         update_panels()
         doupdate()
+
     def disable(self):
         if self.enabled:
             self.enabled = False
             hide_panel(self.game_stat_panel)
+
     def enable(self):
         if not self.enabled:
             self.enabled = True
@@ -126,22 +132,28 @@ class GameStat:
             x = 2
             y = 2
             box(self.game_stat_window, 0, 0)
-            wattron(self.game_stat_window, A_REVERSE)
-            mvwaddstr(self.game_stat_window, y, x, self.data_pull)
-            wattroff(self.game_stat_window, A_REVERSE)
+            if self.game_interface.game_initialized:
+                for param in self.game_interface.game.Player.strings_info:
+                    wattron(self.game_stat_window, A_REVERSE)
+                    mvwaddstr(self.game_stat_window, y, x, param, RED_WHITE)
+                    wattroff(self.game_stat_window, A_REVERSE)
+                    x += 5 + len(param)
             wrefresh(self.game_stat_window)
             update_panels()
             doupdate()
+
+
 class GameFieldSelector:
     def __init__(self, parent, parent_window):
         self.parent = parent
         self.parent_window = parent_window
-        self.x = 0
-        self.y = 0
+        self.x = 1
+        self.y = 1
         self.width = 3
         self.height = 3
         self.selector_zone = None
         self.create_win()
+        self.building_zone_free = False
 
     def create_win(self):
         local_win = derwin(self.parent_window, self.height, self.width, self.y, self.x)
@@ -155,32 +167,39 @@ class GameFieldSelector:
         delwin(self.selector_zone)
 
     def refresh_for_draw(self):
+        self.building_zone_free = self.parent.game_interface.game.can_be_added(self.x - 1, self.y - 1)
         box(self.selector_zone, 0, 0)
+        if self.building_zone_free:
+            wbkgd(self.selector_zone, BLACK_GREEN)
+        else:
+            wbkgd(self.selector_zone, BLACK_RED)
         wrefresh(self.selector_zone)
 
-    def key_event(self,key):
-        if (key == ord('w')):
-            if self.y - 1 > 1:
+    def key_event(self, key):
+        if key in [ord('w'), ord('W'), KEY_UP]:
+            if self.y - 1 > 0:
                 self.destroy_win()
                 self.y -=1
                 self.create_win()
-        elif(key == ord("s")):
+        elif key in [ord('S'), ord('s'), KEY_DOWN]:
             if self.y + self.height < self.parent.height - 1:
                 self.destroy_win()
                 self.y += 1
                 self.create_win()
-        elif(key == ord('a')):
-            if self.x - 1 > 1:
+        elif key in [ord('a'), ord('A'), KEY_LEFT]:
+            if self.x - 1 > 0:
                 self.destroy_win()
                 self.x -= 1
                 self.create_win()
-        elif(key == ord("d")):
+        elif key in [ord("d"), ord("D"), KEY_RIGHT]:
             if self.x + self.width < self.parent.width - 1:
                 self.destroy_win()
                 self.x += 1
                 self.create_win()
         elif(key == 10):
-            self.destroy_win()
+            if self.building_zone_free:
+                self.destroy_win()
+
 
 class GameField:
     def __init__(self, main_interface):
@@ -191,18 +210,22 @@ class GameField:
         self.y = 5
         self.point_x = 1
         self.point_y = 1
-        self.width = 130 ## game world.size + 2  (game world size 128)
-        self.height = 45 ## game world.size  + 2 (game world size 43)
-        self.field_data_pull = None #self.game_interface.##[[' ' for x in range(self.width - 2)] for y in range(self.height - 2)]
+        self.width = 130
+        self.height = 45
+        self.field_data_pull = None
         self.game_field_window = newwin(self.height, self.width, self.y, self.x)
         self.game_field_panel = new_panel(self.game_field_window)
         self.selector = None
+        wbkgd(self.game_field_window, CYAN_RED)
         update_panels()
         doupdate()
+
     def block(self):
         self.blocked = True
+
     def unblock(self):
         self.blocked = False
+
     def key_event(self, key):
         self.building(key)
 
@@ -211,13 +234,21 @@ class GameField:
             self.selector = GameFieldSelector(self, self.game_field_window)
         self.selector.key_event(key)
         if key == 10:
-            self.game_interface.game.add_tower(self.selector.x, self.selector.y)
-            self.selector = None
-            self.game_interface.game.refresh_exist()
-            self.game_interface.game_menu_interface.unblock() # may be pause
+            if self.selector.building_zone_free:
+                self.game_interface.game.add_tower(self.selector.x - 1, self.selector.y - 1)
+                self.exit_building()
+        elif key == 27:
+            self.exit_building()
         wrefresh(self.game_field_window)
         update_panels()
         doupdate()
+
+    def exit_building(self):
+        self.selector = None
+        self.game_interface.game.refresh_exist()
+        self.game_interface.game_menu_interface.unblock()
+        self.game_interface.game.pause()
+        self.game_interface.game_field.unblock()
 
     def disable(self):
         if self.enabled:
@@ -228,6 +259,7 @@ class GameField:
         if not self.enabled:
             self.enabled = True
             show_panel(self.game_field_panel)
+
     def draw(self):
         if self.game_interface.game_initialized:
             self.field_data_pull = self.game_interface.game.Game_map
@@ -236,7 +268,12 @@ class GameField:
 
             for line in self.field_data_pull:
                 for cell in line:
-                    mvwaddstr(self.game_field_window, y, x, cell)
+                    if cell == ':':
+                        mvwaddstr(self.game_field_window, y, x, cell, GREEN_YELLOW)
+                    elif cell == '~':
+                        mvwaddstr(self.game_field_window, y, x, cell, BLUE_WHITE)
+                    else:
+                        mvwaddstr(self.game_field_window, y, x, cell, WHITE_BLACK)
                     x += 1
                 x = 1
                 y += 1
@@ -272,7 +309,7 @@ class Button:
     def _activate(self):
         box(self.button_window)
         mvwaddstr(self.button_window, ((self.height + 1) // 2) - 1, (self.width - len(self.name)) // 2 + 1, self.name)
-        wbkgd(self.button_window, BLUE_WHITE) ##### caution
+        wbkgd(self.button_window, BLUE_WHITE)
         wrefresh(self.button_window)
         update_panels()
         doupdate()
@@ -363,9 +400,9 @@ class GameMenuInterface: # make buttons
             self.buttons.append(Button(self, buttons_list[e], x, y, button_width, button_height, e))
             y += button_height + buttons_interval
 
-    def key_event(self,key):
+    def key_event(self, key):
         if self.enabled and not self.blocked:
-            if key in [ord('w'), ord('W'), ord('S'), ord('s')]:  # == ord('w') or key == ord('s') oor key == KEY_UP or key == KEY_DOWN:
+            if key in [ord('w'), ord('W'), ord('S'), ord('s'), KEY_UP, KEY_DOWN]:
                 self._scroll(key)
             if key == 10:
                 self.selected()
@@ -376,7 +413,7 @@ class GameMenuInterface: # make buttons
         elif self.topics_pointer == 4:
             if self.game_interface.game.Game_run:
                 self.game_interface.game.pause()
-            self.block() ####
+            self.block()
         elif self.topics_pointer == 0:
             self.block()
             self.game_interface.game_field.block()
@@ -385,14 +422,14 @@ class GameMenuInterface: # make buttons
             self.game_interface.main_menu.enable()
             self.game_interface.main_menu.locked_topics.remove(1)
 
-    def _scroll(self,key):
-        if key in [ord('w'), ord('W')]:#== ord('w') or key == KEY_UP:
+    def _scroll(self, key):
+        if key in [ord('w'), ord('W'), KEY_UP]:#== ord('w') or key == KEY_UP:
             self.topics_pointer -= 1
-            while(self.topics_pointer  in self.locked_buttons):
+            while self.topics_pointer  in self.locked_buttons:
                 self.topics_pointer -= 1
-        elif key in [ord('S'), ord('s')]:  # ord('s') or key == KEY_DOWN:
+        elif key in [ord('S'), ord('s'), KEY_DOWN]:  # ord('s') or key == KEY_DOWN:
             self.topics_pointer += 1
-            while(self.topics_pointer  in self.locked_buttons):
+            while self.topics_pointer  in self.locked_buttons:
                 self.topics_pointer += 1
         self.topics_pointer %= len(self.buttons)
 
@@ -451,7 +488,7 @@ class GameInterface:
 
 def kbhit():
     ch  = getch()
-    if (ch != ERR):
+    if ch != ERR:
         ungetch(ch)
         return  True
     else:
@@ -470,25 +507,35 @@ init_pair(1, COLOR_BLACK, COLOR_WHITE)
 init_pair(2, COLOR_WHITE, COLOR_BLUE)
 init_pair(3, COLOR_BLACK, COLOR_BLUE)
 init_pair(4, COLOR_WHITE, COLOR_CYAN)
+init_pair(5, COLOR_YELLOW, COLOR_GREEN)
+init_pair(6, COLOR_GREEN, COLOR_BLACK)
+init_pair(7, COLOR_RED, COLOR_BLACK)
+init_pair(8, COLOR_BLUE, COLOR_YELLOW)
+init_pair(9, COLOR_RED, COLOR_YELLOW)
+init_pair(10, COLOR_WHITE, COLOR_RED)
+init_pair(11, COLOR_RED,COLOR_CYAN)
 bkgd(COLOR_PAIR(2))
 WHITE_BLACK = COLOR_PAIR(1)
 BLUE_WHITE = COLOR_PAIR(2)
 BLUE_BLACK = COLOR_PAIR(3)
 CYAN_WHITE = COLOR_PAIR(4)
+GREEN_YELLOW = COLOR_PAIR(5)
+BLACK_GREEN = COLOR_PAIR(6)
+BLACK_RED = COLOR_PAIR(7)
+YELLOW_BLUE = COLOR_PAIR(8)
+YELLOW_RED = COLOR_PAIR(9)
+RED_WHITE = COLOR_PAIR(10)
+CYAN_RED = COLOR_PAIR(11)
+
 game_interface = GameInterface()
 game_interface.refresh()
 game_interface.first_launch()
 
 while True:
-    #game_interface.draw_tick += 1
     if kbhit():
-        key = getch()#(menu_win)
-        if (key == 27):
-            break
+        key = getch()
         game_interface.key_event(key)
         game_interface.refresh()
-        if (key == 27):
-            break
     else:
         game_interface.refresh()
     game_interface.Draw_tick += 1

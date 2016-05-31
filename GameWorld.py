@@ -4,15 +4,13 @@ import Player
 import copy
 class GameWorld:
     def __init__(self, draw_system, width, height):
-        self.Game_map_static = [['' for x in range(width)] for y in range(height)]
-        self.Game_map = [['_' for x in range(width)] for y in range(height)]
+        self.Game_map_static = None
         self.Width = width
         self.Height = height
         self.Monster_wave = Monsters.MonsterWave(self, 5, 20)
         self.Towers_list = []
-        #self.Test_monster = Monsters.Monster(self, 1, 1)
-        #self.Test_tower = Towers.Tower(self, 3, 4)
         self.init_map()
+        self.Game_map = copy.deepcopy(self.Game_map_static)
         self.Player = Player.Player()
         #self.Test_tower_2 = Towers.Tower(self, 9, 4)
         self.Draw_system = draw_system
@@ -20,11 +18,29 @@ class GameWorld:
 
     def add_tower(self, x, y):
         self.Towers_list.append(Towers.Tower(self, x, y))
+        self.Player.Tower_amount += 1
+
+    def can_be_added(self, x, y):
+        building_zone_free = True
+        for w in range(0, 3):
+            for h in range(0,3):
+                if not self.Game_map[y+h][x+w] == ':':
+                    building_zone_free = False
+        return building_zone_free
+
     def init_map(self):
-        self.Game_map_static = [['_' for x in range(self.Width)] for y in range(self.Height)]
-        for x in self.Monster_wave.Monsters_lobby[0].Monster_way.Way:
-            if x[0] > 0  and  x[0] < self.Width and x[1] > 0 and x[1] < self.Height:
-                self.Game_map_static[x[1], x[0]] = '.'
+        self.Game_map_static = [[':' for x in range(self.Width)] for y in range(self.Height)]
+        self.Game_map_static[-1] = list(":~~~~~~:" * 16)
+        self.Game_map_static[-2] = list(":~~~~~~:" * 16)
+        self.Game_map_static[-3] = list("~~~~~~~~" * 16)
+        self.Game_map_static[-4] = list("~~~~" * 32)
+        self.Game_map_static[-5] = list("~~~~~~~~" * 16)
+        self.Game_map_static[-6] = list(":~~~~~~:" * 16)
+        for x in self.Monster_wave.monster_way.Way:
+            for w in range(0, 2): # monster width
+                for h in range(0, 2): # monster height
+                    if x[0] > 0 and x[0] + w < self.Width and x[1] > 0 and x[1] + h < self.Height:
+                        self.Game_map_static[x[1] + h][x[0] + w] = ' '
     def pause(self):
         if self.Game_run:
             self.Game_run = False
@@ -63,7 +79,7 @@ class GameWorld:
         self.Player.refresh()
         if not self.Player.Alive:
             self.Game_run = False
-            print("loser")
+            #print("loser")
         if not self.Monster_wave.Alive:
             self.Game_run = False
-            print("lol you did it")
+            #print("lol you did it")

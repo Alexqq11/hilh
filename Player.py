@@ -11,8 +11,20 @@ class Player:
         self.Killed_monsters = 0
         self.Monsters_loots = []
         self.Alive = True
+        self.strings_info = []
+        self.get_strings_info()
+
+    def get_strings_info(self):
+        data = list()
+        data.append("MONEY: " + str(self.Money))
+        data.append("EXP: " + str(self.Experience))
+        data.append("CITIZENS: " + str(self.Citizens))
+        data.append("LEVEL: " + str(self.Level))
+        data.append("TOWERS: " + str(self.Tower_amount))
+        self.strings_info = data
 
     def refresh(self):
+        self.get_strings_info()
         for loot in self.Monsters_loots:
             if loot.In_city:
                 self.Citizens -= loot.Citizen_annihilation

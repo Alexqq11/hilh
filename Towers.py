@@ -57,8 +57,8 @@ class Tower:
         return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def in_screen(self, window_width, window_height):
-        return ((self.X >= 0) and (self.X + self.Width < window_width) and
-                (self.Y >= 0) and (self.Y + self.Height < window_height))
+        return ((self.X >= 0) and (self.X + self.Width <= window_width) and
+                (self.Y >= 0) and (self.Y + self.Height <= window_height))
 
     def in_checker_zone(self, monster):
         return (len(monster.Polygon.intersection(self.Attack_zone)) > 0 or
