@@ -7,8 +7,8 @@ class MainMenu:
     def __init__(self,main_interface, width, height):
         self.enabled = True
         self.game_interface = main_interface
-        self.y = 15 #((getmaxyx(stdscr)[0] + 1) // 2) + height
-        self.x = 50 #((getmaxyx(stdscr)[1] + 1)// 2) + width
+        self.y = 15
+        self.x = 50
         self.width = width
         self.height = height
         self.menu_window = newwin(height, width, self.y, self.x)
@@ -20,7 +20,7 @@ class MainMenu:
         update_panels()
         doupdate()
 
-    def _scroll(self,key):
+    def _scroll(self, key):
         if key == ord('w') or key == KEY_UP:
             self.topics_pointer -= 1
             while(self.topics_pointer  in self.locked_topics):
@@ -42,6 +42,8 @@ class MainMenu:
                 self.locked_topics.append(1)
                 self.game_interface.game_menu_interface.unblock()
                 self.game_interface.game.pause()
+                if self.game_interface.game_field.blocked:
+                    self.game_interface.game_field.unblock()
                 self.disable()
             elif self.topics_pointer == 5:
                 exit(0)
@@ -55,7 +57,7 @@ class MainMenu:
 
     def disable(self):
         if self.enabled:
-            self.to_stay_lock  = copy.copy(self.locked_topics)
+            self.to_stay_lock = copy.copy(self.locked_topics)
             self.locked_topics = list(range(0, len(self.topics)))
             self.enabled = False
             hide_panel(self.panel)
@@ -130,23 +132,93 @@ class GameStat:
             wrefresh(self.game_stat_window)
             update_panels()
             doupdate()
+class GameFieldSelector:
+    def __init__(self, parent, parent_window):
+        self.parent = parent
+        self.parent_window = parent_window
+        self.x = 0
+        self.y = 0
+        self.width = 3
+        self.height = 3
+        self.selector_zone = None
+        self.create_win()
+
+    def create_win(self):
+        local_win = derwin(self.parent_window, self.height, self.width, self.y, self.x)
+        box(local_win, 0, 0)
+        wrefresh(local_win)
+        self.selector_zone = local_win
+
+    def destroy_win(self):
+        wborder(self.selector_zone, CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '))
+        wrefresh(self.selector_zone)
+        delwin(self.selector_zone)
+
+    def refresh_for_draw(self):
+        box(self.selector_zone, 0, 0)
+        wrefresh(self.selector_zone)
+
+    def key_event(self,key):
+        if (key == ord('w')):
+            if self.y - 1 > 1:
+                self.destroy_win()
+                self.y -=1
+                self.create_win()
+        elif(key == ord("s")):
+            if self.y + self.height < self.parent.height - 1:
+                self.destroy_win()
+                self.y += 1
+                self.create_win()
+        elif(key == ord('a')):
+            if self.x - 1 > 1:
+                self.destroy_win()
+                self.x -= 1
+                self.create_win()
+        elif(key == ord("d")):
+            if self.x + self.width < self.parent.width - 1:
+                self.destroy_win()
+                self.x += 1
+                self.create_win()
+        elif(key == 10):
+            self.destroy_win()
 
 class GameField:
     def __init__(self, main_interface):
         self.game_interface = main_interface
         self.enabled = True
+        self.blocked = False
         self.x = 0
         self.y = 5
+        self.point_x = 1
+        self.point_y = 1
         self.width = 130 ## game world.size + 2  (game world size 128)
         self.height = 45 ## game world.size  + 2 (game world size 43)
         self.field_data_pull = None #self.game_interface.##[[' ' for x in range(self.width - 2)] for y in range(self.height - 2)]
         self.game_field_window = newwin(self.height, self.width, self.y, self.x)
         self.game_field_panel = new_panel(self.game_field_window)
+        self.selector = None
+        update_panels()
+        doupdate()
+    def block(self):
+        self.blocked = True
+    def unblock(self):
+        self.blocked = False
+    def key_event(self, key):
+        self.building(key)
+
+    def building(self, key):
+        if not self.selector:
+            self.selector = GameFieldSelector(self, self.game_field_window)
+        self.selector.key_event(key)
+        if key == 10:
+            self.game_interface.game.add_tower(self.selector.x, self.selector.y)
+            self.selector = None
+            self.game_interface.game.refresh_exist()
+            self.game_interface.game_menu_interface.unblock() # may be pause
+        wrefresh(self.game_field_window)
         update_panels()
         doupdate()
 
-    def key_event(self,key):
-        pass
     def disable(self):
         if self.enabled:
             self.enabled = False
@@ -169,11 +241,13 @@ class GameField:
                 x = 1
                 y += 1
             wrefresh(self.game_field_window)
+            if self.selector:
+                self.selector.refresh_for_draw()
             update_panels()
             doupdate()
 
     def refresh(self):
-        if self.enabled:
+        if self.enabled and not self.blocked:
             self.draw()
             box(self.game_field_window)
             wrefresh(self.game_field_window)
@@ -239,7 +313,7 @@ class GameMenuInterface: # make buttons
         self.buttons_list = ["MAIN MENU", "TASKS", "FASTER", "SLOWER", "BUILD TOWER", "READY", "PAUSE"]
         self._init_buttons()
         self.topics_pointer = 0
-        self.locked_buttons = [1, 2, 3, 4, 5]
+        self.locked_buttons = [1, 2, 3, 5]
         self.to_stay_lock = []
         self.last_point = -1
         self.enabled = True
@@ -299,8 +373,13 @@ class GameMenuInterface: # make buttons
     def selected(self):
         if self.topics_pointer == 6:
             self.game_interface.game.pause()
+        elif self.topics_pointer == 4:
+            if self.game_interface.game.Game_run:
+                self.game_interface.game.pause()
+            self.block() ####
         elif self.topics_pointer == 0:
             self.block()
+            self.game_interface.game_field.block()
             if self.game_interface.game.Game_run:
                 self.game_interface.game.pause()
             self.game_interface.main_menu.enable()
