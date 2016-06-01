@@ -2,6 +2,8 @@ import Towers
 import Monsters
 import Player
 import copy
+
+
 class GameWorld:
     def __init__(self, draw_system, width, height):
         self.Game_map_static = None
@@ -40,11 +42,12 @@ class GameWorld:
         self.init_cell(self.Monster_wave.monster_way.Way[0], "#")
         self.init_cell(self.Monster_wave.monster_way.Way[-1], "C")
 
-    def init_cell(self,cell, symbol):
+    def init_cell(self, cell, symbol):
         for w in range(0, 2): # monster width
                 for h in range(0, 2): # monster height
-                    if cell[0] >= 0 and cell[0] + w < self.Width and cell[1] >= 0 and cell[1] + h < self.Height:
+                    if 0 <= cell[0] < self.Width + w and 0 <= cell[1] < self.Height + w:
                         self.Game_map_static[cell[1] + h][cell[0] + w] = symbol
+
     def pause(self):
         if self.Game_run:
             self.Game_run = False
@@ -75,6 +78,7 @@ class GameWorld:
             for kernel in b.Kernels:
                 if kernel.in_screen(self.Width, self.Height):
                     self.Game_map[kernel.Y][kernel.X] = kernel.Texture
+
     def refresh_world_state(self):
         for tower in self.Towers_list:
             tower.refresh()
@@ -82,7 +86,5 @@ class GameWorld:
         self.Player.refresh()
         if not self.Player.Alive:
             self.Game_run = False
-            #print("loser")
         if not self.Monster_wave.Alive:
             self.Game_run = False
-            #print("lol you did it")

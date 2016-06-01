@@ -491,13 +491,6 @@ class GameInterface:
         else:
             self.game_menu_interface.key_event(key)
 
-def kbhit():
-    ch  = getch()
-    if ch != ERR:
-        ungetch(ch)
-        return  True
-    else:
-        return False
 
 stdscr = initscr()
 clear()
@@ -508,6 +501,7 @@ keypad(stdscr, True)
 start_color()
 use_default_colors()
 nodelay(stdscr, True)
+
 init_pair(1, COLOR_BLACK, COLOR_WHITE)
 init_pair(2, COLOR_WHITE, COLOR_BLUE)
 init_pair(3, COLOR_BLACK, COLOR_BLUE)
@@ -519,7 +513,7 @@ init_pair(8, COLOR_BLUE, COLOR_YELLOW)
 init_pair(9, COLOR_RED, COLOR_YELLOW)
 init_pair(10, COLOR_WHITE, COLOR_RED)
 init_pair(11, COLOR_RED,COLOR_CYAN)
-bkgd(COLOR_PAIR(2))
+
 WHITE_BLACK = COLOR_PAIR(1)
 BLUE_WHITE = COLOR_PAIR(2)
 BLUE_BLACK = COLOR_PAIR(3)
@@ -532,9 +526,19 @@ YELLOW_RED = COLOR_PAIR(9)
 RED_WHITE = COLOR_PAIR(10)
 CYAN_RED = COLOR_PAIR(11)
 
+bkgd(COLOR_PAIR(2))
+
 game_interface = GameInterface()
 game_interface.refresh()
 game_interface.first_launch()
+
+def kbhit():
+    ch  = getch()
+    if ch != ERR:
+        ungetch(ch)
+        return  True
+    else:
+        return False
 
 while True:
     if kbhit():

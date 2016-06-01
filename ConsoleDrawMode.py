@@ -12,16 +12,16 @@ class DrawWorldConsole:
         self.World_speed = world_speed * 0.07
         self.tick_update_()
 
-    def tick_update_(self):  # TODO make normal timer that works with world ? search about qt  timers
+    def tick_update_(self):
         while True:
             self._Game.refresh_world()
             self._Game_map = self._Game.Game_map
             self.display_map()
             self.Draw_tick += 1
             self.Draw_tick %= 1000
-            time.sleep(self.World_speed)  # TODO world speed generation
+            time.sleep(self.World_speed)
 
-    def display_map(self):  # TODO rewrite this with using sys  and draw objects like a progress bars
+    def display_map(self):
         for y in range(0, self.Height):
             print('+' + '---+' * self.Width)
             print('|', sep='', end='')
@@ -36,4 +36,4 @@ class DrawWorldConsole:
             print()
         print('+' + '---+' * self.Width)
 
-a = DrawWorldConsole(40, 20, 1)
+a = DrawWorldConsole(128, 43, 1)

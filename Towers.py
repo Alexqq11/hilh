@@ -1,7 +1,6 @@
 import sympy.geometry as g
 from collections import deque
 
-tower_abilities1 = {"1": 1, "PhysicalAttack": 1, "attackRadius": 4, "Attack_speed": 1}
 MAX_TOWER_SPEED_ATTACK = 11
 
 
@@ -24,12 +23,10 @@ class TowerAbilities:
 
     @Attack_speed.setter
     def Attack_speed(self, Attack_speed):
-        if 1 > MAX_TOWER_SPEED_ATTACK - Attack_speed:
-            self._Attack_speed = 1
-        elif Attack_speed < 1:
+        if 1 < Attack_speed:
             self._Attack_speed = 11
         else:
-            self._Attack_speed = MAX_TOWER_SPEED_ATTACK - Attack_speed
+            self._Attack_speed = max(MAX_TOWER_SPEED_ATTACK - Attack_speed, 1)
 
 
 class Tower:
@@ -39,11 +36,11 @@ class Tower:
         self.Y = y
         self.Width = 3
         self.Height = 3
-        self.Abilities = TowerAbilities(tower_abilities1)  # TODO initial configs
+        self.Abilities = TowerAbilities({"1": 1, "PhysicalAttack": 1, "attackRadius": 4, "Attack_speed": 1})  # TODO initial configs
         self.Price = 10
         self.Level = 1
         self.Locked = 0
-        self.Texture = "tow"
+        self.Texture = "T"
         self.Enemy = "all"
         self.Attack_zone = self._init_attack_zone()
         self.Kernels = deque()
@@ -57,8 +54,7 @@ class Tower:
         return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def in_screen(self, window_width, window_height):
-        return ((self.X >= 0) and (self.X + self.Width <= window_width) and
-                (self.Y >= 0) and (self.Y + self.Height <= window_height))
+        return 0 <= self.X <= window_width + self.Width and 0 <= self.Y <= window_height + self.Height
 
     def in_checker_zone(self, monster):
         return (len(monster.Polygon.intersection(self.Attack_zone)) > 0 or
@@ -112,11 +108,10 @@ class Kernel:  # don't panic
         self.Alive = True
         self.Target = monster
         self.Parent_tower = tower
-        self.Texture = "ker"
+        self.Texture = "*"
 
     def in_screen(self, window_width, window_height):
-        return ((self.X >= 0) and (self.X + self.Width < window_width) and
-                (self.Y >= 0) and (self.Y + self.Height < window_height)) and self.Alive
+        return 0 <= self.X <= window_width + self.Width and 0 <= self.Y <= window_height + self.Height and self.Alive
 
     def to_target(self):
         progress_x = 0
