@@ -12,7 +12,9 @@ class Player:
         self.Monsters_loots = []
         self.Alive = True
         self.strings_info = []
+        self.wave_health = 0
         self.get_strings_info()
+
 
     def get_strings_info(self):
         data = list()
@@ -21,14 +23,19 @@ class Player:
         data.append("CITIZENS: " + str(self.Citizens))
         data.append("LEVEL: " + str(self.Level))
         data.append("TOWERS: " + str(self.Tower_amount))
+        data.append("WAVE HEALTH: " + str(self.wave_health))
         self.strings_info = data
 
     def refresh(self):
-        self.get_strings_info()
         for loot in self.Monsters_loots:
-            if loot.In_city:
-                self.Citizens -= loot.Citizen_annihilation
-                if self.Citizens <= 0:
-                    self.Alive = False
-            self.Money += loot.Money
-            self.Experience += loot.Experience
+            if loot.Avalible:
+                if loot.In_city:
+                    self.Citizens -= loot.Citizen_annihilation
+                    if self.Citizens <= 0:
+                        self.Alive = False
+                self.Money += loot.Money
+                self.Experience += loot.Experience
+                loot.Avalible = False
+
+        self.Monsters_loots = []
+        self.get_strings_info()

@@ -110,7 +110,6 @@ class GameStat:
         self.y = 0
         self.width = 130
         self.height = 5
-        #self.data_pull = #"MONEY: {0}        CITIZENS: {1}      LEVEL: {2}          TIME: {3}      TOWERS: {4}           WAWES: {5}     WAVE LIVES: {6}"
         self.game_stat_window = newwin(self.height, self.width, self.y, self.x)
         self.game_stat_panel = new_panel(self.game_stat_window)
         wbkgd(self.game_stat_window, CYAN_RED)
@@ -132,6 +131,7 @@ class GameStat:
             x = 2
             y = 2
             box(self.game_stat_window, 0, 0)
+            mvwaddstr(self.game_stat_window, y, x, " " * 127)
             if self.game_interface.game_initialized:
                 for param in self.game_interface.game.Player.strings_info:
                     wattron(self.game_stat_window, A_REVERSE)
@@ -271,6 +271,10 @@ class GameField:
                     if cell == ':':
                         mvwaddstr(self.game_field_window, y, x, cell, GREEN_YELLOW)
                     elif cell == '~':
+                        mvwaddstr(self.game_field_window, y, x, cell, BLUE_WHITE)
+                    elif cell == '#':
+                        mvwaddstr(self.game_field_window, y, x, cell, BLACK_RED)
+                    elif cell == 'C':
                         mvwaddstr(self.game_field_window, y, x, cell, BLUE_WHITE)
                     else:
                         mvwaddstr(self.game_field_window, y, x, cell, WHITE_BLACK)
@@ -451,11 +455,12 @@ class GameInterface:
         self.game_field = GameField(self)
         self.game_menu_interface = GameMenuInterface(self)
         self.main_menu = MainMenu(self, 35, 15)
-        self.game = None # GameWorld.GameWorld(self,self.game_field.width - 2, self.game_field.height - 2)
+        self.game = None
         self.game_initialized = False
         self.Draw_tick = 0
         self.world_speed = 0.07 #world_speed * 0.07
         self.refresh()
+
     def start_new_game(self):
         self.game = GameWorld.GameWorld(self, self.game_field.width - 2, self.game_field.height - 2)
         self.game_field.enable()

@@ -29,6 +29,8 @@ class MonsterWave:
         self.World = world
         self.Alive = True
         self.monster_way = monster_way
+        self.health_on_map = 0
+        self.Monster_wave_health = len(self.Monsters_lobby) * 20 + self.health_on_map
 
     def add_on_map(self):
         if self.Monsters_lobby and self.World.Draw_system.Draw_tick % self.Monster_time_interval == 0:
@@ -36,12 +38,17 @@ class MonsterWave:
 
     def refresh_on_map(self):
         for monster in self.Monsters_on_map:
-            if monster.Monster_loot.In_city:
-                self.World.Player.Monsters_loots.append(monster.Monster_loot)
-                monster.Health = 0
-            monster.refresh()
             if not monster.Alive:
+                if monster.Monster_loot:
+                    self.World.Player.Monsters_loots.append(monster.Monster_loot)
+                    monster.Monster_loot = None
                 self.Monsters_on_map.remove(monster)
+            monster.refresh()
+            self.health_on_map += max(monster.Health, 0)
+        self.Monster_wave_health = len(self.Monsters_lobby) * 20 + self.health_on_map
+        self.health_on_map = 0
+        self.World.Player.wave_health = self.Monster_wave_health
+
 
     def refresh(self):
         self.add_on_map()
@@ -57,7 +64,14 @@ monster_armor1 = {"Froze": 0, "Fire": 0, "Poison": 0, "Electricity": 0, "Physica
 monster_way = MonsterWay(((1,1), (2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),
                           (12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(18,2),(18,3),(18,4),(18,5),
                           (18,6),(18,7),(18,8),(18,9),(18,10),(17,10),(16,10),(15,10),(14,10),(13,10),(12,10),
-                          (11,10),(10,10),(9,10),(8,10),(7,10),(6,10),(5,9),(4,8),(3,8),(2,8),(1,8),(0,8),(-1,8)))
+                          (11,10),(10,10),(9,10),(8,10),(7,10),(6,10),(5,9),(4,8),(3,8),(2,8),(1,8),(0,8),
+                          (0,9),(0,10),(0,11),(0,12),(0,13),(0,14),(0,15),(0,16),(0,17),(1,18),(2,20),(2,21),
+                          (3,22),(4,23),(5,24),(6,25),(7,26),(8,27),(9,28),(10,29),(11,30),(12,31),(13,32),(14,33),(15,34),
+                          (16,35),(17,35),(18,35),(19,35),(20,35),(21,35),(22,35),(23,35),(24,35),(25,35),(25,35),(26,35),
+                          (27,35),(28,35),(29,35),(30,35),(31,35),(32,35),(33,35),(34,35),(35,35),(36,35),(37,35),(38,35),
+                          (39,35),(40,35),(41,35),(42,35),(42,35),(43,35),(44,35),(45,35),(46,35),(47,35),(48,35),(49,35),
+                          (50,35),(51,34),(52,33),(53,32),(54,31),(55,30),(56,29),(57,28),(58,27),(59,26),(60,25),(61,25)
+                          ))
 
 MAX_MONSTER_SPEED = 21
 MIN_MONSTER_SPEED = 21
@@ -80,6 +94,7 @@ class MonsterLoot:
         self.Citizen_annihilation = 1
         self.Experience = 5
         self.In_city = False
+        self.Avalible = True
 
 
 class MonsterEffects:
@@ -153,7 +168,7 @@ class Monster:
         self.Polygon = self._init_polygon()
         self.Speed_base = 5
         self.Speed_now = self._Speed_base
-        self.Health = 100
+        self.Health = 20
         self.Monster_loot = MonsterLoot(self)
         self.Lived_ticks = 0
         self.Alive = True
@@ -215,12 +230,13 @@ class Monster:
                 self.Y = -1
 
     def refresh_ai(self):
+        if self.Monster_way.in_city(self.Way_position):
+            self.Monster_loot.In_city = True
+            self.Effects.Direction = 0
+            self.Alive = False
         if self.World.Draw_system.Draw_tick % self.Speed_now == 0:
             self.Lived_ticks += 1
             self.Lived_ticks %= 100
-            if self.Monster_way.in_city(self.Way_position):
-                self.Monster_loot.In_city = True
-                self.Effects.Direction = 0
             if self.Monster_way.in_lobby(self.Way_position):
                 self.Effects.Direction = 1
             self.move()

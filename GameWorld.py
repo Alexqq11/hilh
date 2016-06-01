@@ -7,12 +7,11 @@ class GameWorld:
         self.Game_map_static = None
         self.Width = width
         self.Height = height
-        self.Monster_wave = Monsters.MonsterWave(self, 5, 20)
+        self.Monster_wave = Monsters.MonsterWave(self, 5, 60)
         self.Towers_list = []
         self.init_map()
         self.Game_map = copy.deepcopy(self.Game_map_static)
         self.Player = Player.Player()
-        #self.Test_tower_2 = Towers.Tower(self, 9, 4)
         self.Draw_system = draw_system
         self.Game_run = True
 
@@ -36,11 +35,16 @@ class GameWorld:
         self.Game_map_static[-4] = list("~~~~" * 32)
         self.Game_map_static[-5] = list("~~~~~~~~" * 16)
         self.Game_map_static[-6] = list(":~~~~~~:" * 16)
-        for x in self.Monster_wave.monster_way.Way:
-            for w in range(0, 2): # monster width
+        for cell in self.Monster_wave.monster_way.Way:
+            self.init_cell(cell, ' ')
+        self.init_cell(self.Monster_wave.monster_way.Way[0], "#")
+        self.init_cell(self.Monster_wave.monster_way.Way[-1], "C")
+
+    def init_cell(self,cell, symbol):
+        for w in range(0, 2): # monster width
                 for h in range(0, 2): # monster height
-                    if x[0] > 0 and x[0] + w < self.Width and x[1] > 0 and x[1] + h < self.Height:
-                        self.Game_map_static[x[1] + h][x[0] + w] = ' '
+                    if cell[0] >= 0 and cell[0] + w < self.Width and cell[1] >= 0 and cell[1] + h < self.Height:
+                        self.Game_map_static[cell[1] + h][cell[0] + w] = symbol
     def pause(self):
         if self.Game_run:
             self.Game_run = False
@@ -72,9 +76,8 @@ class GameWorld:
                 if kernel.in_screen(self.Width, self.Height):
                     self.Game_map[kernel.Y][kernel.X] = kernel.Texture
     def refresh_world_state(self):
-        #b.refresh()
-        #for tower in self.Towers_list:
-            #tower.refresh()
+        for tower in self.Towers_list:
+            tower.refresh()
         self.Monster_wave.refresh()
         self.Player.refresh()
         if not self.Player.Alive:
