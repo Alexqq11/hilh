@@ -100,27 +100,18 @@ task for game:
 	console edition:
 		write user command interface
 			write arg parse
-			game pause
-			game reset
 			map constructure
 			save game / loadGame
 				pickle -watch about it
 		write monster part
-			Ai
-			monster wawe
-			monster full-uder-attack-back-end 
-			textures
 		write tower part
-			full-attack-back-end
+
 			thinking about tower update mechanics
 				may be it was update configs
 				and method that is read tower config
 				and aplly it
-			texture
 		write player binding with gameWorld
-			monsters
-			Wawes 
-			towers
+
 			towerShop
 			thinling about level expiriense and money
 		allot off Tests

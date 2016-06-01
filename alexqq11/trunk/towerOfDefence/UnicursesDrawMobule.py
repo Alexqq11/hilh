@@ -4,7 +4,7 @@ import GameWorld
 
 
 class MainMenu:
-    def __init__(self, main_interface, width, height):
+    def __init__(self,main_interface, width, height):
         self.enabled = True
         self.game_interface = main_interface
         self.y = 15
@@ -32,22 +32,22 @@ class MainMenu:
         self.topics_pointer %= len(self.topics)
 
     def _selected(self):
-        if self.topics_pointer == 0:
-            if self.game_interface.game_initialized:
-                self.game_interface.game_menu_interface.unblock()
-                self.game_interface.game_field.unblock()
+            if self.topics_pointer == 0:
+                if self.game_interface.game_initialized:
+                    self.game_interface.game_menu_interface.unblock()
+                    self.game_interface.game_field.unblock()
+                    self.locked_topics.append(1)
+                    self.game_interface.game_initialized = False
+                self.start_new_game()
+            elif self.topics_pointer == 1:
                 self.locked_topics.append(1)
-                self.game_interface.game_initialized = False
-            self.start_new_game()
-        elif self.topics_pointer == 1:
-            self.locked_topics.append(1)
-            self.game_interface.game_menu_interface.unblock()
-            self.game_interface.game.pause()
-            if self.game_interface.game_field.blocked:
-                self.game_interface.game_field.unblock()
-            self.disable()
-        elif self.topics_pointer == 5:
-            exit(0)
+                self.game_interface.game_menu_interface.unblock()
+                self.game_interface.game.pause()
+                if self.game_interface.game_field.blocked:
+                    self.game_interface.game_field.unblock()
+                self.disable()
+            elif self.topics_pointer == 5:
+                exit(0)
 
     def key_event(self, key):
         if self.enabled:
@@ -133,7 +133,7 @@ class GameStat:
             box(self.game_stat_window, 0, 0)
             mvwaddstr(self.game_stat_window, y, x, " " * 127)
             if self.game_interface.game_initialized:
-                for param in self.game_interface.game.player.strings_info:
+                for param in self.game_interface.game.Player.strings_info:
                     wattron(self.game_stat_window, A_REVERSE)
                     mvwaddstr(self.game_stat_window, y, x, param, RED_WHITE)
                     wattroff(self.game_stat_window, A_REVERSE)
@@ -162,8 +162,7 @@ class GameFieldSelector:
         self.selector_zone = local_win
 
     def destroy_win(self):
-        wborder(self.selector_zone, CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '),
-                CCHAR(' '))
+        wborder(self.selector_zone, CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '), CCHAR(' '))
         wrefresh(self.selector_zone)
         delwin(self.selector_zone)
 
@@ -180,7 +179,7 @@ class GameFieldSelector:
         if key in [ord('w'), ord('W'), KEY_UP]:
             if self.y - 1 > 0:
                 self.destroy_win()
-                self.y -= 1
+                self.y -=1
                 self.create_win()
         elif key in [ord('S'), ord('s'), KEY_DOWN]:
             if self.y + self.height < self.parent.height - 1:
@@ -197,7 +196,7 @@ class GameFieldSelector:
                 self.destroy_win()
                 self.x += 1
                 self.create_win()
-        elif key == 10:
+        elif(key == 10):
             if self.building_zone_free:
                 self.destroy_win()
 
@@ -263,7 +262,7 @@ class GameField:
 
     def draw(self):
         if self.game_interface.game_initialized:
-            self.field_data_pull = self.game_interface.game.game_map
+            self.field_data_pull = self.game_interface.game.Game_map
             x = 1
             y = 1
 
@@ -342,7 +341,7 @@ class Button:
         wrefresh(self.button_window)
 
 
-class GameMenuInterface:  # make buttons
+class GameMenuInterface: # make buttons
     def __init__(self, main_interface):
         self.game_interface = main_interface
         self.x = 130
@@ -367,7 +366,7 @@ class GameMenuInterface:  # make buttons
     def block(self):
         if not self.blocked:
             self.to_stay_lock = copy.copy(self.locked_buttons)
-            self.locked_buttons = list(range(0, len(self.buttons)))
+            self.locked_buttons = list(range(0,len(self.buttons)))
             self.blocked = True
             self.last_point = self.topics_pointer
             self.topics_pointer = -1
@@ -382,8 +381,8 @@ class GameMenuInterface:  # make buttons
 
     def disable(self):
         if self.enabled:
-            self.to_stay_lock = copy.copy(self.locked_buttons)
-            self.locked_buttons = list(range(0, len(self.buttons)))
+            self.to_stay_lock  = copy.copy(self.locked_buttons)
+            self.locked_buttons = list(range(0,len(self.buttons)))
             self.enabled = False
             hide_panel(self.game_menu_interface_panel)
 
@@ -411,36 +410,37 @@ class GameMenuInterface:  # make buttons
                 self._scroll(key)
             if key == 10:
                 self.selected()
-                # may be it need to refresh
-
+            # may be it need to refresh
     def selected(self):
         if self.topics_pointer == 6:
             self.game_interface.game.pause()
         elif self.topics_pointer == 4:
-            if self.game_interface.game.game_run:
+            if self.game_interface.game.Game_run:
                 self.game_interface.game.pause()
             self.block()
         elif self.topics_pointer == 0:
             self.block()
             self.game_interface.game_field.block()
-            if self.game_interface.game.game_run:
+            if self.game_interface.game.Game_run:
                 self.game_interface.game.pause()
             self.game_interface.main_menu.enable()
             self.game_interface.main_menu.locked_topics.remove(1)
 
     def _scroll(self, key):
-        if key in [ord('w'), ord('W'), KEY_UP]:  # == ord('w') or key == KEY_UP:
+        if key in [ord('w'), ord('W'), KEY_UP]:#== ord('w') or key == KEY_UP:
             self.topics_pointer -= 1
-            while self.topics_pointer in self.locked_buttons:
+            while self.topics_pointer  in self.locked_buttons:
                 self.topics_pointer -= 1
         elif key in [ord('S'), ord('s'), KEY_DOWN]:  # ord('s') or key == KEY_DOWN:
             self.topics_pointer += 1
-            while self.topics_pointer in self.locked_buttons:
+            while self.topics_pointer  in self.locked_buttons:
                 self.topics_pointer += 1
         self.topics_pointer %= len(self.buttons)
 
     def refresh(self):
         if self.enabled:
+            x = 1
+            y = 1
             for button in self.buttons:
                 button.refresh()
             box(self.game_menu_interface_window)
@@ -457,8 +457,8 @@ class GameInterface:
         self.main_menu = MainMenu(self, 35, 15)
         self.game = None
         self.game_initialized = False
-        self.draw_tick = 0
-        self.world_speed = 0.07  # world_speed * 0.07
+        self.Draw_tick = 0
+        self.world_speed = 0.07 #world_speed * 0.07
         self.refresh()
 
     def start_new_game(self):
@@ -512,7 +512,7 @@ init_pair(7, COLOR_RED, COLOR_BLACK)
 init_pair(8, COLOR_BLUE, COLOR_YELLOW)
 init_pair(9, COLOR_RED, COLOR_YELLOW)
 init_pair(10, COLOR_WHITE, COLOR_RED)
-init_pair(11, COLOR_RED, COLOR_CYAN)
+init_pair(11, COLOR_RED,COLOR_CYAN)
 
 WHITE_BLACK = COLOR_PAIR(1)
 BLUE_WHITE = COLOR_PAIR(2)
@@ -532,15 +532,13 @@ game_interface = GameInterface()
 game_interface.refresh()
 game_interface.first_launch()
 
-
 def kbhit():
-    ch = getch()
+    ch  = getch()
     if ch != ERR:
         ungetch(ch)
-        return True
+        return  True
     else:
         return False
-
 
 while True:
     if kbhit():
@@ -549,8 +547,8 @@ while True:
         game_interface.refresh()
     else:
         game_interface.refresh()
-    game_interface.draw_tick += 1
-    game_interface.draw_tick %= 1000
+    game_interface.Draw_tick += 1
+    game_interface.Draw_tick %= 1000
 
 refresh()
 clear()
