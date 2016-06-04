@@ -47,6 +47,8 @@ class MainMenu:
                 self.game_interface.game_field.unblock()
             self.disable()
         elif self.topics_pointer == 5:
+            clear()
+            endwin()
             exit(0)
 
     def key_event(self, key):
@@ -491,67 +493,67 @@ class GameInterface:
         else:
             self.game_menu_interface.key_event(key)
 
+if __name__ == "__main__":
+    stdscr = initscr()
+    clear()
+    noecho()
+    cbreak()
+    curs_set(0)
+    keypad(stdscr, True)
+    start_color()
+    use_default_colors()
+    nodelay(stdscr, True)
 
-stdscr = initscr()
-clear()
-noecho()
-cbreak()
-curs_set(0)
-keypad(stdscr, True)
-start_color()
-use_default_colors()
-nodelay(stdscr, True)
+    init_pair(1, COLOR_BLACK, COLOR_WHITE)
+    init_pair(2, COLOR_WHITE, COLOR_BLUE)
+    init_pair(3, COLOR_BLACK, COLOR_BLUE)
+    init_pair(4, COLOR_WHITE, COLOR_CYAN)
+    init_pair(5, COLOR_YELLOW, COLOR_GREEN)
+    init_pair(6, COLOR_GREEN, COLOR_BLACK)
+    init_pair(7, COLOR_RED, COLOR_BLACK)
+    init_pair(8, COLOR_BLUE, COLOR_YELLOW)
+    init_pair(9, COLOR_RED, COLOR_YELLOW)
+    init_pair(10, COLOR_WHITE, COLOR_RED)
+    init_pair(11, COLOR_RED, COLOR_CYAN)
 
-init_pair(1, COLOR_BLACK, COLOR_WHITE)
-init_pair(2, COLOR_WHITE, COLOR_BLUE)
-init_pair(3, COLOR_BLACK, COLOR_BLUE)
-init_pair(4, COLOR_WHITE, COLOR_CYAN)
-init_pair(5, COLOR_YELLOW, COLOR_GREEN)
-init_pair(6, COLOR_GREEN, COLOR_BLACK)
-init_pair(7, COLOR_RED, COLOR_BLACK)
-init_pair(8, COLOR_BLUE, COLOR_YELLOW)
-init_pair(9, COLOR_RED, COLOR_YELLOW)
-init_pair(10, COLOR_WHITE, COLOR_RED)
-init_pair(11, COLOR_RED, COLOR_CYAN)
+    WHITE_BLACK = COLOR_PAIR(1)
+    BLUE_WHITE = COLOR_PAIR(2)
+    BLUE_BLACK = COLOR_PAIR(3)
+    CYAN_WHITE = COLOR_PAIR(4)
+    GREEN_YELLOW = COLOR_PAIR(5)
+    BLACK_GREEN = COLOR_PAIR(6)
+    BLACK_RED = COLOR_PAIR(7)
+    YELLOW_BLUE = COLOR_PAIR(8)
+    YELLOW_RED = COLOR_PAIR(9)
+    RED_WHITE = COLOR_PAIR(10)
+    CYAN_RED = COLOR_PAIR(11)
 
-WHITE_BLACK = COLOR_PAIR(1)
-BLUE_WHITE = COLOR_PAIR(2)
-BLUE_BLACK = COLOR_PAIR(3)
-CYAN_WHITE = COLOR_PAIR(4)
-GREEN_YELLOW = COLOR_PAIR(5)
-BLACK_GREEN = COLOR_PAIR(6)
-BLACK_RED = COLOR_PAIR(7)
-YELLOW_BLUE = COLOR_PAIR(8)
-YELLOW_RED = COLOR_PAIR(9)
-RED_WHITE = COLOR_PAIR(10)
-CYAN_RED = COLOR_PAIR(11)
+    bkgd(COLOR_PAIR(2))
 
-bkgd(COLOR_PAIR(2))
-
-game_interface = GameInterface()
-game_interface.refresh()
-game_interface.first_launch()
-
-
-def kbhit():
-    ch = getch()
-    if ch != ERR:
-        ungetch(ch)
-        return True
-    else:
-        return False
+    game_interface = GameInterface()
+    game_interface.refresh()
+    game_interface.first_launch()
 
 
-while True:
-    if kbhit():
-        key = getch()
-        game_interface.key_event(key)
-        game_interface.refresh()
-    else:
-        game_interface.refresh()
-    game_interface.draw_tick += 1
-    game_interface.draw_tick %= 1000
+    def kbhit():
+        ch = getch()
+        if ch != ERR:
+            ungetch(ch)
+            return True
+        else:
+            return False
 
-refresh()
-clear()
-endwin()
+
+    while True:
+        if kbhit():
+            key = getch()
+            game_interface.key_event(key)
+            game_interface.refresh()
+        else:
+            game_interface.refresh()
+        game_interface.draw_tick += 1
+        game_interface.draw_tick %= 1000
+
+    refresh()
+    clear()
+    endwin()

@@ -25,7 +25,7 @@ class TowerAbilities:
     @attack_speed.setter
     def attack_speed(self, attack_speed):
         if 1 < attack_speed:
-            self._attack_speed = 11
+            self._attack_speed = MAX_TOWER_SPEED_ATTACK
         else:
             self._attack_speed = max(MAX_TOWER_SPEED_ATTACK - attack_speed, 1)
 
@@ -100,7 +100,7 @@ class Tower:
 
 class Kernel:  # don't panic
     def __init__(self, tower, monster):
-        self.x = tower.x - 1 + (tower.width + 1) // 2  # stupid console
+        self.x = tower.x - 1 + (tower.width + 1) // 2
         self.y = tower.y - 1 + (tower.height + 1) // 2
         self.width = 0
         self.height = 0
@@ -141,8 +141,10 @@ class Kernel:  # don't panic
             self.check_for_collision()
 
     def check_for_collision(self):
-        if self.target.polygon.encloses_point(self.collision_zone) or \
-                        len(self.target.polygon.intersection(self.collision_zone)) > 0:
+        if (
+            self.target.polygon.encloses_point(self.collision_zone) or
+            len(self.target.polygon.intersection(self.collision_zone)) > 0
+        ):
             self.in_target()
 
     def refresh(self):

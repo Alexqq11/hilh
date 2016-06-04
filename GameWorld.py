@@ -49,10 +49,7 @@ class GameWorld:
                     self.game_map_static[cell[1] + h][cell[0] + w] = symbol
 
     def pause(self):
-        if self.game_run:
-            self.game_run = False
-        else:
-            self.game_run = True
+        self.game_run = not self.game_run
 
     def run(self):
         if self.game_run:
@@ -63,7 +60,7 @@ class GameWorld:
         self.refresh_world_state()
 
     def refresh_exist(self):
-        self.game_map = copy.deepcopy(self.game_map_static)  # deepcopy(self.game_map_static)
+        self.game_map = copy.deepcopy(self.game_map_static)
         for a in self.monster_wave.monsters_on_map:
             if a.in_screen(self.width, self.height):
                 for x in range(a.x, a.x + a.width):

@@ -22,7 +22,7 @@ class DrawWorldConsole:
             time.sleep(self.world_speed)
 
     def display_map(self):
-        for y in range(0, self.height):
+        for y in range(self.height):
             print('+' + '---+' * self.width)
             print('|', sep='', end='')
             for x in range(0, self.width):

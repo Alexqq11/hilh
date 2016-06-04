@@ -1,0 +1,148 @@
+#### arhitecture game ideas
+###mob part###
+class MobArmor():
+	Froze
+	Fire
+	Poison
+	Electricity
+	Physical
+
+class MobEffects():
+	Frozen;
+	Fired;
+	Poisoned;
+	Electricitied;
+	Slowing
+	Direction
+	CityzenAnigilation
+
+class MobPerson():
+	X
+	Y
+	Width
+	Height
+	Speed
+	Live
+	Armor 
+	Price
+	Texture
+	EffectsList
+### Towers Part ###
+class TowerAbilities():
+	PhysicalAttac
+	FrozeAttac
+	FireAttac
+	PoisonAttac
+	ElectricityAttac
+	SlowingChange
+	DirectionChange
+	AttacRadious
+class Tower():
+	X
+	Y
+	Width
+	Height
+	Abilities
+	Price
+	Level
+	Locked
+	Texture
+### Player part ###
+class Player():
+	Citizens
+	Momey
+	Expiriens
+	TowerAmount
+	WawesAmount
+	LivedWawes
+	WaweTimeout
+	Level
+	TowerShop 
+class TowerBranch():# think about towerShop and Tower Branch in shop
+	type1  #линейки башен
+	UnlokedPlayerLevel
+	Locked
+	UnlockedTowerLevel
+	UnlockedTowerBranchExpirience 
+
+class TowerShop():
+	TowersTypes
+	TotalUnlockedTowers
+	Expiriens
+# map Part;
+class cellTriger():# why not
+
+class Cell():
+	X
+	Y
+	Width
+	Height
+	CellType # three types: monster way, tower place , shit with stones
+	MobEffects # it is can be some trigers place
+	Texture
+
+class GameMap():
+	windowHeight
+	windowWidth
+	cell<list> 
+	def gen():
+		pass
+class Game():
+	Map
+	TowerShop
+	Player
+	Towers
+	Mobs 
+pass
+### game
+
+task for game:
+	console edition:
+		write user command interface
+			write arg parse
+			map constructure
+			save game / loadGame
+				pickle -watch about it
+		write monster part
+		write tower part
+
+			thinking about tower update mechanics
+				may be it was update configs
+				and method that is read tower config
+				and aplly it
+		write player binding with gameWorld
+
+			towerShop
+			thinling about level expiriense and money
+		allot off Tests
+
+	thinling about cells and their modification with towers		
+	gui part
+		write size configuration for game
+		make textures
+		write game interface
+		write user/player interface
+		write levels interface
+		write mapgen interface
+		write towershops interface  
+
+
+
+    """
+        small dock in the feature it will be in the official documentation
+        **_dmg = abs (armor.param - monster_eff )(if more than zero in bracket  - dmg is zero , else this)
+         and nex foreach counting bonus damage and then mege it
+
+El dmg:(physical_dmg + 0.76(el_dmg);(frost_dmg + 0.193(el dmg));(fire_dmg + 0.46(el_dmg)(poison_dmg - 0.17(el.dmg))
+Poison_dmg:(phys_dmg + 0.83(pois); fire_dmg + 0,08(pois),cold + 0,el_dmg - 0,17(pois))
+froze_dmf: (phys_dmg + 0,53(froze), fire_dmg - 1(froze), poison - 0,5(froze),el dmg + 0.33(froze) )
+fire_ dmg: (phys_ dmg + 0,63(fire), poison - 0,13(fire), froze - 1(fire dmg), el_ dmg - 0.13(fire))
+    """
+
+
+
+		
+
+
+
+

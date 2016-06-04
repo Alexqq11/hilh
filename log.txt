@@ -1,0 +1,611 @@
+Messages
+========
+
+Towers.py
+  Line: 27
+    pylint: misplaced-comparison-constant / Comparison should be attack_speed > 1 (col 11)
+  Line: 85
+    pylint: unused-variable / Unused variable 'x' (col 12)
+
+UnicursesDrawMobule.py
+  Line: 1
+    pylint: redefined-builtin / Redefining built-in 'filter'
+    pylint: unused-wildcard-import / Unused imports from wildcard import: PD_COLOR_PAIR, KEY_SOPTIONS, chgat, touchln, PDC_A_NORMAL, redrawln, wgetkey, mvwinsstr, PDC_KEY_RESTART, PDC_KEY_RESET, PDC_KEY_EIC, flash, KEY_NEXT, sys, PDC_KEY_SCREATE, KEY_SRSUME, mvchgat, PDC_KEY_CLEAR, KEY_SSAVE, ACS_VLINE, wtimeout, vline, PDC_BUTTON4_TRIPLE_CLICKED, KEY_SDL, KEY_EOS, can_change_color, attroff, pdlib, PDC_KEY_SNEXT, touchwin, PDC_KEY_SDL, KEY_REDO, SCS_BSSS, waddstr, NCURSES_AVAILABLE, SCS_DIAMOND, ucs_reconfigure, panel_window, KEY_UNDO, ACS_LLCORNER, tparm, BUTTON4_RELEASED, timeout, PDC_KEY_PREVIOUS, killchar, PDC_BUTTON4_DOUBLE_CLICKED, KEY_SF, SCS_UARROW, SCS_DARROW, KEY_LL, KEY_RESET, KEY_BEG, termattrs, ACS_CKBOARD, PDC_REPORT_MOUSE_POSITION, SCS_STERLING, SCS_BULLET, ACS_S7, ACS_S9, PDC_A_PROTECT, PDC_KEY_SFIND, PDC_BUTTON1_DOUBLE_CLICKED, nonl, ACS_RARROW, bkgdset, mvwinch, ACS_SSSB, nl, ACS_LRCORNER, PDC_KEY_SOPTIONS, PDC_KEY_COMMAND, mvinsch, KEY_F0, PDC_KEY_SPRINT, overlay, wscrl, PDC_KEY_SRSUME, mvdeleteln, del_panel, attrset, PDC_BUTTON2_RELEASED, BUTTON1_DOUBLE_CLICKED, set_panel_userptr, SCS_S3, BUTTON4_PRESSED, A_BOLD, init_color, KEY_OPEN, ACS_GEQUAL, KEY_SDC, MEVENT, ACS_DIAMOND, mvwinstr, noutrefresh, PDC_KEY_C3, getbegyx, PDC_KEY_SELECT, keyname, PDC_A_LEFTLINE, KEY_A3, KEY_COPY, notimeout, PDC_KEY_CODE_YES, ALL_MOUSE_EVENTS, winsstr, PDC_KEY_REDO, PDC_A_INVIS, setupterm, scroll, wechochar, ACS_BSSS, PDC_KEY_SMOVE, inch, ACS_DARROW, PDC_KEY_SEXIT, KEY_HOME, PDC_KEY_BTAB, PDC_KEY_A1, KEY_RESIZE, BUTTON3_TRIPLE_CLICKED, KEY_C1, BUTTON2_PRESSED, ACS_SBBS, KEY_SHOME, SCS_RARROW, PDC_BUTTON2_DOUBLE_CLICKED, KEY_MAX, KEY_SMOVE, getparyx, PDC_KEY_LEFT, KEY_SNEXT, PDC_A_ALTCHARSET, PDC_KEY_SCANCEL, PDC_KEY_OPTIONS, SCS_S7, BUTTON3_DOUBLE_CLICKED, PDC_KEY_EOS, getstr, KEY_SUSPEND, delay_output, SCS_SSBB, touchline, KEY_OPTIONS, border, PDC_KEY_HELP, KEY_REFRESH, ALTCHAR, def_shell_mode, PDC_KEY_SHOME, mvwhline, KEY_HELP, beep, KEY_COMMAND, BUTTON4_DOUBLE_CLICKED, KEY_CLOSE, color_content, PDC_A_ATTRIBUTES, PDC_KEY_DC, PDC_BUTTON_CTRL, attron, erase, PDC_COLOR_SHIFT, ACS_URCORNER, winsdelln, SCS_S1, KEY_SAVE, wmove, getmouse, mvwgetch, KEY_SCREATE, overwrite, mouseinterval, clrtobot, KEY_EOL, napms, SCS_SSBS, longname, PDC_BUTTON2_TRIPLE_CLICKED, PDC_A_BLINK, BUTTON2_DOUBLE_CLICKED, PDC_KEY_SEOL, PDC_KEY_CLOSE, KEY_END, PDC_BUTTON4_PRESSED, erasechar, reset_prog_mode, A_DIM, KEY_SIC, KEY_SR, KEY_SELECT, ACS_PLUS, PDC_KEY_HOME, redrawwin, PDC_KEY_END, PDC_KEY_CATAB, KEY_SMESSAGE, mvgetch, KEY_F, PDC_KEY_PPAGE, SCS_LLCORNER, PDC_KEY_MOVE, wgetch, getkey, subwin, KEY_RESUME, PDC_BUTTON3_RELEASED, PDC_BUTTON1_CLICKED, PDC_KEY_SCOMMAND, meta, PDC_ALL_MOUSE_EVENTS, KEY_MIN, putp, PDC_KEY_SUNDO, mvwaddnstr, halfdelay, PDC_KEY_RESIZE, BUTTON1_TRIPLE_CLICKED, KEY_EIC, wbkgdset, PDC_KEY_SMESSAGE, PDC_KEY_EXIT, NCURSES, scrollok, getwin, PDC_KEY_SPREVIOUS, ACS_NEQUAL, KEY_CANCEL, KEY_SRIGHT, PDC_KEY_SAVE, newpad, SCS_BOARD, KEY_SPREVIOUS, wgetstr, noraw, ctypes, BUTTON1_PRESSED, KEY_IL, mvwdelch, KEY_DC, def_prog_mode, PDC_A_BOLD, BUTTON_CTRL, wvline, syncup, SCS_BBSS, copywin, PDC_BUTTON3_PRESSED, ACS_SSSS, PDC_BUTTON4_RELEASED, CSTR, SCS_SBSB, insdelln, BUTTON4_CLICKED, unctrl, A_BLINK, PDC_KEY_SRIGHT, idcok, PDC_KEY_SEND, untouchwin, PDC_KEY_B2, PDC_KEY_SBEG, tigetstr, wsetscrreg, KEY_SEND, flushinp, ACS_STERLING, PDC_A_STANDOUT, PDC_A_CHARTEXT, BUTTON2_TRIPLE_CLICKED, KEY_IC, PDC_KEY_REFRESH, clearok, winsch, A_PROTECT, SCS_PI, setscrreg, SCS_BTEE, PDC_KEY_SF, wattrset, putwin, whline, PDC_BUTTON3_CLICKED, PD_GET_CURSCR, instr, KEY_MOVE, KEY_MOUSE, PDC_KEY_SUSPEND, KEY_ENTER, ACS_BLOCK, KEY_EXIT, PDC_KEY_LHELP, PDC_A_UNDERLINE, color_pair, os, UCS_DEFAULT_WRAPPER, enclose, ACS_LEQUAL, KEY_SUNDO, SCS_LTEE, PDC_BUTTON1_RELEASED, BUTTON2_CLICKED, SCS_DEGREE, PDC_BUTTON2_PRESSED, BUTTON4_TRIPLE_CLICKED, KEY_BREAK, panel_userptr, KEY_SLEFT, SCS_BSBS, pair_number, ACS_UARROW, SCS_GEQUAL, ACS_BBSS, ACS_SBSB, PDC_KEY_SREPLACE, BUTTON3_PRESSED, PDC_KEY_ABORT, mvderwin, PDC_A_DIM, ACS_BSSB, winstr, clrtoeol, mvwdeleteln, PDC_BUTTON_SHIFT, wredrawln, wtouchline, ACS_HLINE, PDC_A_RIGHTLINE, KEY_CLEAR, PDC_KEY_COPY, PDC_KEY_SCOPY, mvwaddch, PDC_KEY_SDC, is_linetouched, PDC_KEY_SRESET, ACS_BOARD, BUTTON1_CLICKED, mvdelch, wchgat, ACS_PI, move_panel, PDC_KEY_LL, KEY_DL, SCS_SBBS, mvaddnstr, KEY_FIND, KEY_SBEG, has_il, PDC_KEY_NEXT, PDC_KEY_CTAB, standend, PDC_KEY_RESUME, termname, subpad, PDC_KEY_RIGHT, panel_below, KEY_PPAGE, SCS_BLOCK, PDC_KEY_FIND, KEY_SEOL, wstandout, ACS_TTEE, ACS_RTEE, mvaddch, KEY_SPRINT, mvinsnstr, mvwin, SCS_ULCORNER, insch, SCS_HLINE, PDC_KEY_UNDO, KEY_PREVIOUS, PDC_KEY_PRINT, waddch, PDC_KEY_EOL, SCS_BSSB, PDC_KEY_REPLACE, PDC_KEY_SHELP, PDC_KEY_IL, A_CHARTEXT, PD_PAIR_NUMBER, PDC_KEY_NPAGE, addnstr, PDC_A_REVERSE, ACS_DEGREE, ACS_SBSS, OK, replace_panel, KEY_SCOPY, ACS_SSBS, KEY_REPLACE, PDC_KEY_MOUSE, PDC_BUTTON3_TRIPLE_CLICKED, SCS_S9, KEY_PRINT, PDC_BUTTON_ALT, wdeleteln, deleteln, SCS_PLMINUS, cursyncup, mvwgetstr, pair_content, KEY_STAB, qiflush, PDC_KEY_DOWN, PDC_A_ITALIC, KEY_B2, mvwchgat, KEY_REFERENCE, A_NORMAL, KEY_SRESET, ACS_BULLET, PDC_KEY_DL, getmaxyx, KEY_SCOMMAND, SCS_VLINE, PDC_KEY_ENTER, SCS_LRCORNER, KEY_NPAGE, SCS_URCORNER, tigetnum, PDC_BUTTON3_DOUBLE_CLICKED, PDC_KEY_BREAK, tigetflag, PDC_KEY_BACKSPACE, PDC_KEY_SREDO, delch, KEY_RESTART, insnstr, ungetmouse, mvvline, ACS_S1, syncdown, KEY_A1, PDC_LEAVEOK, filter, SCS_CKBOARD, KEY_SHELP, mvinstr, werase, mvinch, bottom_panel, getyx, move, COLOR_MAGENTA, PDC_KEY_MESSAGE, wsyncup, PDC_KEY_SIC, prefresh, wclear, KEY_SFIND, mvwinsch, SCS_TTEE, hline, PDC_KEY_CREATE, KEY_C3, PDC_KEY_STAB, echo, KEY_SCANCEL, top_panel, mvwinsnstr, PDC_KEY_F0, KEY_BTAB, ACS_LARROW, KEY_CATAB, ACS_LANTERN, SCS_SBSS, addch, A_COLOR, KEY_SEXIT, has_colors, KEY_SREPLACE, wclrtoeol, PDC_BUTTON1_PRESSED, wdelch, echochar, curses, A_STANDOUT, BUTTON_ALT, BUTTON2_RELEASED, SCS_LARROW, winsnstr, mvinsstr, mvwvline, wclrtobot, KEY_CTAB, has_ic, PDC_KEY_BEG, locale, KEY_SSUSPEND, mvgetstr, ACS_S3, BUTTON3_CLICKED, KEY_BACKSPACE, A_ATTRIBUTES, PDC_BUTTON1_TRIPLE_CLICKED, wsyncdown, winsertln, SCS_PLUS, PDC_BUTTON4_CLICKED, mvhline, SCS_NEQUAL, use_env, raw, wstandend, KEY_MESSAGE, leaveok, mousemask, is_wintouched, BUTTON1_RELEASED, immedok, ACS_PLMINUS, insstr, PDC_KEY_SSAVE, PDC_KEY_SLEFT, addstr, baudrate, SCS_LANTERN, typeahead, BUTTON3_RELEASED, PDC_KEY_C1, isendwin, SCS_SSSB, wenclose, ACS_BTEE, A_INVIS, code, waddnstr, idlok, standout, mvaddstr, ACS_BSBS, KEY_CREATE, SCS_SSSS, has_key, ACS_LTEE, insertln, winch, panel_hidden, setsyx, PDC_KEY_A3, PDC_ATTR_SHIFT, REPORT_MOUSE_POSITION, PDC_KEY_CANCEL, PDC_A_COLOR, PDC_KEY_SSUSPEND, PDC_KEY_MARK, BUTTON_SHIFT, PDC_KEY_REFERENCE, PDC_KEY_UP, syncok, KEY_SREDO, getsyx, panel_above, PDC_KEY_IC, noqiflush, nocbreak, ACS_SSBB, SCS_RTEE, A_ALTCHARSET, PDC_KEY_OPEN, KEY_MARK, PDC_KEY_SR, SCS_LEQUAL, PDC_BUTTON2_CLICKED, reset_shell_mode, ACS_ULCORNER
+  Line: 14
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 28)
+  Line: 19
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 22)
+  Line: 20
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 21
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 24
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 40)
+  Line: 28
+    pyflakes: F999 / KEY_DOWN may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 50
+    pyflakes: F999 / clear may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 51
+    pyflakes: F999 / endwin may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 56
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 64)
+  Line: 69
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 75
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 85
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 88
+    pyflakes: F999 / wattron may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 89
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 90
+    pyflakes: F999 / wattroff may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 92
+    pyflakes: F999 / wattron may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 93
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 94
+    pyflakes: F999 / wattroff may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 96
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 98
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 99
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 100
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 115
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 33)
+  Line: 116
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 32)
+  Line: 117
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 118
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 119
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 124
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 129
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 135
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 136
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 139
+    pyflakes: F999 / wattron may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 140
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 141
+    pyflakes: F999 / wattroff may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 143
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 144
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 145
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 161
+    pyflakes: F999 / derwin may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 162
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 163
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 167
+    pyflakes: F999 / wborder may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 168
+    pyflakes: F999 / CCHAR may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 169
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 170
+    pyflakes: F999 / delwin may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 174
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 176
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 178
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 179
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 182
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 40)
+  Line: 187
+    pyflakes: F999 / KEY_DOWN may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 192
+    pyflakes: F999 / KEY_LEFT may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 197
+    pyflakes: F999 / KEY_RIGHT may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 219
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 34)
+  Line: 220
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 33)
+  Line: 222
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 223
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 224
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 245
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 246
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 247
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 259
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 264
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 275
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 277
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 279
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 281
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 283
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 287
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 290
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 291
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 296
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 297
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 298
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 299
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 303
+    pylint: too-many-arguments / Too many arguments (8/5) (col 4)
+  Line: 313
+    pyflakes: F999 / derwin may be undefined, or defined from star imports: unicurses (col 30)
+  Line: 317
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 318
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 319
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 320
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 321
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 322
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 326
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 327
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 329
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 330
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 332
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 333
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 343
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 344
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 354
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 43)
+  Line: 355
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 365
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 366
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 367
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 390
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 396
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 412
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 64)
+  Line: 434
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 40)
+  Line: 438
+    pyflakes: F999 / KEY_DOWN may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 448
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 449
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 450
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 451
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 497
+    pyflakes: F999 / initscr may be undefined, or defined from star imports: unicurses (col 10)
+  Line: 498
+    pyflakes: F999 / clear may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 499
+    pyflakes: F999 / noecho may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 500
+    pyflakes: F999 / cbreak may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 501
+    pyflakes: F999 / curs_set may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 502
+    pyflakes: F999 / keypad may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 503
+    pyflakes: F999 / start_color may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 504
+    pyflakes: F999 / use_default_colors may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 505
+    pyflakes: F999 / nodelay may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 507
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 508
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 509
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 510
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 511
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 512
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 513
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 514
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 515
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 516
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 517
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 519
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 520
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 521
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 522
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 523
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 16)
+  Line: 524
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 525
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 526
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 527
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 528
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 529
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 12)
+  Line: 531
+    pyflakes: F999 / bkgd may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 539
+    pyflakes: F999 / getch may be undefined, or defined from star imports: unicurses (col 10)
+  Line: 540
+    pyflakes: F999 / ERR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 541
+    pyflakes: F999 / ungetch may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 549
+    pyflakes: F999 / getch may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 557
+    pyflakes: F999 / refresh may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 558
+    pyflakes: F999 / clear may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 559
+    pyflakes: F999 / endwin may be undefined, or defined from star imports: unicurses (col 1)
+
+alexqq11\trunk\towerOfDefence\Towers.py
+  Line: 27
+    pylint: misplaced-comparison-constant / Comparison should be attack_speed > 1 (col 11)
+  Line: 85
+    pylint: unused-variable / Unused variable 'x' (col 12)
+
+alexqq11\trunk\towerOfDefence\UnicursesDrawMobule.py
+  Line: 1
+    pylint: redefined-builtin / Redefining built-in 'filter'
+    pylint: unused-wildcard-import / Unused imports from wildcard import: PD_COLOR_PAIR, KEY_SOPTIONS, chgat, touchln, PDC_A_NORMAL, redrawln, wgetkey, mvwinsstr, PDC_KEY_RESTART, PDC_KEY_RESET, PDC_KEY_EIC, flash, KEY_NEXT, sys, PDC_KEY_SCREATE, KEY_SRSUME, mvchgat, PDC_KEY_CLEAR, KEY_SSAVE, ACS_VLINE, wtimeout, vline, PDC_BUTTON4_TRIPLE_CLICKED, KEY_SDL, KEY_EOS, can_change_color, attroff, pdlib, PDC_KEY_SNEXT, touchwin, PDC_KEY_SDL, KEY_REDO, SCS_BSSS, waddstr, NCURSES_AVAILABLE, SCS_DIAMOND, ucs_reconfigure, panel_window, KEY_UNDO, ACS_LLCORNER, tparm, BUTTON4_RELEASED, timeout, PDC_KEY_PREVIOUS, killchar, PDC_BUTTON4_DOUBLE_CLICKED, KEY_SF, SCS_UARROW, SCS_DARROW, KEY_LL, KEY_RESET, KEY_BEG, termattrs, ACS_CKBOARD, PDC_REPORT_MOUSE_POSITION, SCS_STERLING, SCS_BULLET, ACS_S7, ACS_S9, PDC_A_PROTECT, PDC_KEY_SFIND, PDC_BUTTON1_DOUBLE_CLICKED, nonl, ACS_RARROW, bkgdset, mvwinch, ACS_SSSB, nl, ACS_LRCORNER, PDC_KEY_SOPTIONS, PDC_KEY_COMMAND, mvinsch, KEY_F0, PDC_KEY_SPRINT, overlay, wscrl, PDC_KEY_SRSUME, mvdeleteln, del_panel, attrset, PDC_BUTTON2_RELEASED, BUTTON1_DOUBLE_CLICKED, set_panel_userptr, SCS_S3, BUTTON4_PRESSED, A_BOLD, init_color, KEY_OPEN, ACS_GEQUAL, KEY_SDC, MEVENT, ACS_DIAMOND, mvwinstr, noutrefresh, PDC_KEY_C3, getbegyx, PDC_KEY_SELECT, keyname, PDC_A_LEFTLINE, KEY_A3, KEY_COPY, notimeout, PDC_KEY_CODE_YES, ALL_MOUSE_EVENTS, winsstr, PDC_KEY_REDO, PDC_A_INVIS, setupterm, scroll, wechochar, ACS_BSSS, PDC_KEY_SMOVE, inch, ACS_DARROW, PDC_KEY_SEXIT, KEY_HOME, PDC_KEY_BTAB, PDC_KEY_A1, KEY_RESIZE, BUTTON3_TRIPLE_CLICKED, KEY_C1, BUTTON2_PRESSED, ACS_SBBS, KEY_SHOME, SCS_RARROW, PDC_BUTTON2_DOUBLE_CLICKED, KEY_MAX, KEY_SMOVE, getparyx, PDC_KEY_LEFT, KEY_SNEXT, PDC_A_ALTCHARSET, PDC_KEY_SCANCEL, PDC_KEY_OPTIONS, SCS_S7, BUTTON3_DOUBLE_CLICKED, PDC_KEY_EOS, getstr, KEY_SUSPEND, delay_output, SCS_SSBB, touchline, KEY_OPTIONS, border, PDC_KEY_HELP, KEY_REFRESH, ALTCHAR, def_shell_mode, PDC_KEY_SHOME, mvwhline, KEY_HELP, beep, KEY_COMMAND, BUTTON4_DOUBLE_CLICKED, KEY_CLOSE, color_content, PDC_A_ATTRIBUTES, PDC_KEY_DC, PDC_BUTTON_CTRL, attron, erase, PDC_COLOR_SHIFT, ACS_URCORNER, winsdelln, SCS_S1, KEY_SAVE, wmove, getmouse, mvwgetch, KEY_SCREATE, overwrite, mouseinterval, clrtobot, KEY_EOL, napms, SCS_SSBS, longname, PDC_BUTTON2_TRIPLE_CLICKED, PDC_A_BLINK, BUTTON2_DOUBLE_CLICKED, PDC_KEY_SEOL, PDC_KEY_CLOSE, KEY_END, PDC_BUTTON4_PRESSED, erasechar, reset_prog_mode, A_DIM, KEY_SIC, KEY_SR, KEY_SELECT, ACS_PLUS, PDC_KEY_HOME, redrawwin, PDC_KEY_END, PDC_KEY_CATAB, KEY_SMESSAGE, mvgetch, KEY_F, PDC_KEY_PPAGE, SCS_LLCORNER, PDC_KEY_MOVE, wgetch, getkey, subwin, KEY_RESUME, PDC_BUTTON3_RELEASED, PDC_BUTTON1_CLICKED, PDC_KEY_SCOMMAND, meta, PDC_ALL_MOUSE_EVENTS, KEY_MIN, putp, PDC_KEY_SUNDO, mvwaddnstr, halfdelay, PDC_KEY_RESIZE, BUTTON1_TRIPLE_CLICKED, KEY_EIC, wbkgdset, PDC_KEY_SMESSAGE, PDC_KEY_EXIT, NCURSES, scrollok, getwin, PDC_KEY_SPREVIOUS, ACS_NEQUAL, KEY_CANCEL, KEY_SRIGHT, PDC_KEY_SAVE, newpad, SCS_BOARD, KEY_SPREVIOUS, wgetstr, noraw, ctypes, BUTTON1_PRESSED, KEY_IL, mvwdelch, KEY_DC, def_prog_mode, PDC_A_BOLD, BUTTON_CTRL, wvline, syncup, SCS_BBSS, copywin, PDC_BUTTON3_PRESSED, ACS_SSSS, PDC_BUTTON4_RELEASED, CSTR, SCS_SBSB, insdelln, BUTTON4_CLICKED, unctrl, A_BLINK, PDC_KEY_SRIGHT, idcok, PDC_KEY_SEND, untouchwin, PDC_KEY_B2, PDC_KEY_SBEG, tigetstr, wsetscrreg, KEY_SEND, flushinp, ACS_STERLING, PDC_A_STANDOUT, PDC_A_CHARTEXT, BUTTON2_TRIPLE_CLICKED, KEY_IC, PDC_KEY_REFRESH, clearok, winsch, A_PROTECT, SCS_PI, setscrreg, SCS_BTEE, PDC_KEY_SF, wattrset, putwin, whline, PDC_BUTTON3_CLICKED, PD_GET_CURSCR, instr, KEY_MOVE, KEY_MOUSE, PDC_KEY_SUSPEND, KEY_ENTER, ACS_BLOCK, KEY_EXIT, PDC_KEY_LHELP, PDC_A_UNDERLINE, color_pair, os, UCS_DEFAULT_WRAPPER, enclose, ACS_LEQUAL, KEY_SUNDO, SCS_LTEE, PDC_BUTTON1_RELEASED, BUTTON2_CLICKED, SCS_DEGREE, PDC_BUTTON2_PRESSED, BUTTON4_TRIPLE_CLICKED, KEY_BREAK, panel_userptr, KEY_SLEFT, SCS_BSBS, pair_number, ACS_UARROW, SCS_GEQUAL, ACS_BBSS, ACS_SBSB, PDC_KEY_SREPLACE, BUTTON3_PRESSED, PDC_KEY_ABORT, mvderwin, PDC_A_DIM, ACS_BSSB, winstr, clrtoeol, mvwdeleteln, PDC_BUTTON_SHIFT, wredrawln, wtouchline, ACS_HLINE, PDC_A_RIGHTLINE, KEY_CLEAR, PDC_KEY_COPY, PDC_KEY_SCOPY, mvwaddch, PDC_KEY_SDC, is_linetouched, PDC_KEY_SRESET, ACS_BOARD, BUTTON1_CLICKED, mvdelch, wchgat, ACS_PI, move_panel, PDC_KEY_LL, KEY_DL, SCS_SBBS, mvaddnstr, KEY_FIND, KEY_SBEG, has_il, PDC_KEY_NEXT, PDC_KEY_CTAB, standend, PDC_KEY_RESUME, termname, subpad, PDC_KEY_RIGHT, panel_below, KEY_PPAGE, SCS_BLOCK, PDC_KEY_FIND, KEY_SEOL, wstandout, ACS_TTEE, ACS_RTEE, mvaddch, KEY_SPRINT, mvinsnstr, mvwin, SCS_ULCORNER, insch, SCS_HLINE, PDC_KEY_UNDO, KEY_PREVIOUS, PDC_KEY_PRINT, waddch, PDC_KEY_EOL, SCS_BSSB, PDC_KEY_REPLACE, PDC_KEY_SHELP, PDC_KEY_IL, A_CHARTEXT, PD_PAIR_NUMBER, PDC_KEY_NPAGE, addnstr, PDC_A_REVERSE, ACS_DEGREE, ACS_SBSS, OK, replace_panel, KEY_SCOPY, ACS_SSBS, KEY_REPLACE, PDC_KEY_MOUSE, PDC_BUTTON3_TRIPLE_CLICKED, SCS_S9, KEY_PRINT, PDC_BUTTON_ALT, wdeleteln, deleteln, SCS_PLMINUS, cursyncup, mvwgetstr, pair_content, KEY_STAB, qiflush, PDC_KEY_DOWN, PDC_A_ITALIC, KEY_B2, mvwchgat, KEY_REFERENCE, A_NORMAL, KEY_SRESET, ACS_BULLET, PDC_KEY_DL, getmaxyx, KEY_SCOMMAND, SCS_VLINE, PDC_KEY_ENTER, SCS_LRCORNER, KEY_NPAGE, SCS_URCORNER, tigetnum, PDC_BUTTON3_DOUBLE_CLICKED, PDC_KEY_BREAK, tigetflag, PDC_KEY_BACKSPACE, PDC_KEY_SREDO, delch, KEY_RESTART, insnstr, ungetmouse, mvvline, ACS_S1, syncdown, KEY_A1, PDC_LEAVEOK, filter, SCS_CKBOARD, KEY_SHELP, mvinstr, werase, mvinch, bottom_panel, getyx, move, COLOR_MAGENTA, PDC_KEY_MESSAGE, wsyncup, PDC_KEY_SIC, prefresh, wclear, KEY_SFIND, mvwinsch, SCS_TTEE, hline, PDC_KEY_CREATE, KEY_C3, PDC_KEY_STAB, echo, KEY_SCANCEL, top_panel, mvwinsnstr, PDC_KEY_F0, KEY_BTAB, ACS_LARROW, KEY_CATAB, ACS_LANTERN, SCS_SBSS, addch, A_COLOR, KEY_SEXIT, has_colors, KEY_SREPLACE, wclrtoeol, PDC_BUTTON1_PRESSED, wdelch, echochar, curses, A_STANDOUT, BUTTON_ALT, BUTTON2_RELEASED, SCS_LARROW, winsnstr, mvinsstr, mvwvline, wclrtobot, KEY_CTAB, has_ic, PDC_KEY_BEG, locale, KEY_SSUSPEND, mvgetstr, ACS_S3, BUTTON3_CLICKED, KEY_BACKSPACE, A_ATTRIBUTES, PDC_BUTTON1_TRIPLE_CLICKED, wsyncdown, winsertln, SCS_PLUS, PDC_BUTTON4_CLICKED, mvhline, SCS_NEQUAL, use_env, raw, wstandend, KEY_MESSAGE, leaveok, mousemask, is_wintouched, BUTTON1_RELEASED, immedok, ACS_PLMINUS, insstr, PDC_KEY_SSAVE, PDC_KEY_SLEFT, addstr, baudrate, SCS_LANTERN, typeahead, BUTTON3_RELEASED, PDC_KEY_C1, isendwin, SCS_SSSB, wenclose, ACS_BTEE, A_INVIS, code, waddnstr, idlok, standout, mvaddstr, ACS_BSBS, KEY_CREATE, SCS_SSSS, has_key, ACS_LTEE, insertln, winch, panel_hidden, setsyx, PDC_KEY_A3, PDC_ATTR_SHIFT, REPORT_MOUSE_POSITION, PDC_KEY_CANCEL, PDC_A_COLOR, PDC_KEY_SSUSPEND, PDC_KEY_MARK, BUTTON_SHIFT, PDC_KEY_REFERENCE, PDC_KEY_UP, syncok, KEY_SREDO, getsyx, panel_above, PDC_KEY_IC, noqiflush, nocbreak, ACS_SSBB, SCS_RTEE, A_ALTCHARSET, PDC_KEY_OPEN, KEY_MARK, PDC_KEY_SR, SCS_LEQUAL, PDC_BUTTON2_CLICKED, reset_shell_mode, ACS_ULCORNER
+  Line: 14
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 28)
+  Line: 19
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 22)
+  Line: 20
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 21
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 24
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 40)
+  Line: 28
+    pyflakes: F999 / KEY_DOWN may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 50
+    pyflakes: F999 / clear may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 51
+    pyflakes: F999 / endwin may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 56
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 64)
+  Line: 69
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 75
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 85
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 88
+    pyflakes: F999 / wattron may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 89
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 90
+    pyflakes: F999 / wattroff may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 92
+    pyflakes: F999 / wattron may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 93
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 94
+    pyflakes: F999 / wattroff may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 96
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 98
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 99
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 100
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 115
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 33)
+  Line: 116
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 32)
+  Line: 117
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 118
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 119
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 124
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 129
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 135
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 136
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 139
+    pyflakes: F999 / wattron may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 140
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 141
+    pyflakes: F999 / wattroff may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 143
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 144
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 145
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 161
+    pyflakes: F999 / derwin may be undefined, or defined from star imports: unicurses (col 21)
+  Line: 162
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 163
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 167
+    pyflakes: F999 / wborder may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 168
+    pyflakes: F999 / CCHAR may be undefined, or defined from star imports: unicurses (col 17)
+  Line: 169
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 170
+    pyflakes: F999 / delwin may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 174
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 176
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 178
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 179
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 182
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 40)
+  Line: 187
+    pyflakes: F999 / KEY_DOWN may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 192
+    pyflakes: F999 / KEY_LEFT may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 197
+    pyflakes: F999 / KEY_RIGHT may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 219
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 34)
+  Line: 220
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 33)
+  Line: 222
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 223
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 224
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 245
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 246
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 247
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 259
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 264
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 275
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 277
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 279
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 281
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 283
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 25)
+  Line: 287
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 290
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 291
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 296
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 297
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 298
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 299
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 303
+    pylint: too-many-arguments / Too many arguments (8/5) (col 4)
+  Line: 313
+    pyflakes: F999 / derwin may be undefined, or defined from star imports: unicurses (col 30)
+  Line: 317
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 318
+    pyflakes: F999 / mvwaddstr may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 319
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 320
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 321
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 322
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 326
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 327
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 329
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 330
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 332
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 333
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 343
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 344
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 354
+    pyflakes: F999 / newwin may be undefined, or defined from star imports: unicurses (col 43)
+  Line: 355
+    pyflakes: F999 / new_panel may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 365
+    pyflakes: F999 / wbkgd may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 366
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 367
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 390
+    pyflakes: F999 / hide_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 396
+    pyflakes: F999 / show_panel may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 412
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 64)
+  Line: 434
+    pyflakes: F999 / KEY_UP may be undefined, or defined from star imports: unicurses (col 40)
+  Line: 438
+    pyflakes: F999 / KEY_DOWN may be undefined, or defined from star imports: unicurses (col 42)
+  Line: 448
+    pyflakes: F999 / box may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 449
+    pyflakes: F999 / wrefresh may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 450
+    pyflakes: F999 / update_panels may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 451
+    pyflakes: F999 / doupdate may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 497
+    pyflakes: F999 / initscr may be undefined, or defined from star imports: unicurses (col 10)
+  Line: 498
+    pyflakes: F999 / clear may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 499
+    pyflakes: F999 / noecho may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 500
+    pyflakes: F999 / cbreak may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 501
+    pyflakes: F999 / curs_set may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 502
+    pyflakes: F999 / keypad may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 503
+    pyflakes: F999 / start_color may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 504
+    pyflakes: F999 / use_default_colors may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 505
+    pyflakes: F999 / nodelay may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 507
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 508
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 509
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 510
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 511
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 512
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 513
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 514
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 515
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 516
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 517
+    pyflakes: F999 / init_pair may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 519
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 520
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 521
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 522
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 523
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 16)
+  Line: 524
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 525
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 526
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 527
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 528
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 13)
+  Line: 529
+    pyflakes: F999 / COLOR_PAIR may be undefined, or defined from star imports: unicurses (col 12)
+  Line: 531
+    pyflakes: F999 / bkgd may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 539
+    pyflakes: F999 / getch may be undefined, or defined from star imports: unicurses (col 10)
+  Line: 540
+    pyflakes: F999 / ERR may be undefined, or defined from star imports: unicurses (col 14)
+  Line: 541
+    pyflakes: F999 / ungetch may be undefined, or defined from star imports: unicurses (col 9)
+  Line: 549
+    pyflakes: F999 / getch may be undefined, or defined from star imports: unicurses (col 15)
+  Line: 557
+    pyflakes: F999 / refresh may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 558
+    pyflakes: F999 / clear may be undefined, or defined from star imports: unicurses (col 1)
+  Line: 559
+    pyflakes: F999 / endwin may be undefined, or defined from star imports: unicurses (col 1)
+
+
+
+Check Information
+=================
+         Started: 2016-06-01 23:10:28.835371
+        Finished: 2016-06-01 23:10:33.860945
+      Time Taken: 5.03 seconds
+       Formatter: grouped
+        Profiles: default, no_doc_warnings, no_test_warnings, strictness_medium, strictness_high, strictness_veryhigh, no_member_warnings
+      Strictness: None
+  Libraries Used: 
+       Tools Run: dodgy, mccabe, pep8, profile-validator, pyflakes, pylint
+  Messages Found: 294
+

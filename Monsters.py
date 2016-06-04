@@ -128,18 +128,18 @@ class MonsterEffects:
         poicoff = {"electricity": -0.17, "froze": -0.37, "poison": 0, "fire": -0.3}
         slocoff = {"electricity": -0.33, "froze": 0.83, "poison": 0, "fire": -0.43}
         dmgcoff = {"electricity": 0.76, "froze": 0.56, "poison": 0.86, "fire": 0.63}
-        electricity = sum(map(lambda x, y: x * y, list(effcoff.values()), list(elecoff.values())))
-        fire = sum(map(lambda x, y: x * y, list(effcoff.values()), list(fircoff.values())))
-        froze = sum(map(lambda x, y: x * y, list(effcoff.values()), list(frocoff.values())))
-        poison = sum(map(lambda x, y: x * y, list(effcoff.values()), list(poicoff.values())))
-        slowing = sum(map(lambda x, y: x * y, list(effcoff.values()), list(slocoff.values())))
+        electricity = sum(map(lambda x, y: x * y, effcoff.values(), elecoff.values()))
+        fire = sum(map(lambda x, y: x * y, effcoff.values(), fircoff.values()))
+        froze = sum(map(lambda x, y: x * y, effcoff.values(), frocoff.values()))
+        poison = sum(map(lambda x, y: x * y, effcoff.values(), poicoff.values()))
+        slowing = sum(map(lambda x, y: x * y, effcoff.values(), slocoff.values()))
         self.slowing += slowing
         self.electricity = max(self.electricity + electricity, 0)
         self.poison = max(self.poison + poison, 0)
         self.froze = max(self.froze + froze, 0)
         self.fire = max(self.fire + fire, 0)
         effcoff = {"electricity": self.electricity, "froze": self.froze, "poison": self.poison, "fire": self.fire}
-        damage = sum(map(lambda x, y: x * y, list(effcoff.values()), list(dmgcoff.values())))
+        damage = sum(map(lambda x, y: x * y, effcoff.values(), dmgcoff.values()))
         self.damage += damage
 
     def _tick_effects_update(self):
@@ -217,16 +217,17 @@ class Monster:
         return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def refresh(self):
-        if self.alive:
-            self.polygon = self._init_polygon()
-            self.effects.refresh_effects()
-            self.lived_ticks += 1
-            self.lived_ticks %= 100
-            self.refresh_ai()
-            if self.health < 1:
-                self.alive = False
-                self.x = -1
-                self.y = -1
+        if not self.alive:
+            return
+        self.polygon = self._init_polygon()
+        self.effects.refresh_effects()
+        self.lived_ticks += 1
+        self.lived_ticks %= 100
+        self.refresh_ai()
+        if self.health < 1:
+            self.alive = False
+            self.x = -1
+            self.y = -1
 
     def refresh_ai(self):
         if self.monster_way.in_city(self.way_position):

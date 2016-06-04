@@ -16,7 +16,7 @@ class Player:
         self.get_strings_info()
 
     def get_strings_info(self):
-        data = list()
+        data = []
         data.append("MONEY: " + str(self.money))
         data.append("EXP: " + str(self.experience))
         data.append("CITIZENS: " + str(self.citizens))
