@@ -1,0 +1,18 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="unicurses.A_REVERSE" />
+          <option value="unicurses.A_UNDERLINE" />
+          <option value="unicurses.CCHAR" />
+          <option value="unicurses.COLOR_BLACK" />
+          <option value="unicurses.COLOR_BLUE" />
+          <option value="unicurses.COLOR_CYAN" />
+          <option value="unicurses.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

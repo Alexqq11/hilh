@@ -1,4 +1,5 @@
-import sympy.geometry as g
+#import sympy.geometry as g
+import Geometry as geo
 from collections import deque
 
 MAX_TOWER_SPEED_ATTACK = 11
@@ -53,15 +54,14 @@ class Tower:
         y = self.y - self.abilities.attack_radius
         w = self.width - 1 + 2 * self.abilities.attack_radius
         h = self.height - 1 + 2 * self.abilities.attack_radius
-        return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
+        return geo.Rectangle(x,y,w,h)#//g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def in_screen(self, window_width, window_height):
         return 0 <= self.x <= window_width + self.width and 0 <= self.y <= window_height + self.height
 
     def in_checker_zone(self, monster):
-        return (len(monster.polygon.intersection(self.attack_zone)) > 0 or
-                len(self.attack_zone.intersection(monster.polygon)) > 0 or
-                self.attack_zone.encloses(monster.polygon)) and monster.is_can_be_attacked(self.enemy)
+        return (self.attack_zone.AreIntersected(self.attack_zone, monster.polygon) and monster.is_can_be_attacked(self.enemy))
+
 
     def attack(self, monster):
         if self.in_checker_zone(monster):  # may be in the future we will don't use this checker
@@ -105,7 +105,7 @@ class Kernel:  # don't panic
         self.width = 0
         self.height = 0
         self.speed = 4
-        self.collision_zone = g.Point(self.x, self.y)
+        self.collision_zone = geo.Point(self.x, self.y)
         self.enemy_type = "all"
         self.alive = True
         self.target = monster
@@ -132,18 +132,17 @@ class Kernel:  # don't panic
         if abs(self.target.x - self.x) < abs(self.target.y - self.y):
             self.y += step_y
             progress_y += step_y
-            self.collision_zone = g.Point(self.x, self.y)
+            self.collision_zone = geo.Point(self.x, self.y)
         else:
             self.x += step_x
             progress_x += step_x
-            self.collision_zone = g.Point(self.x, self.y)
+            self.collision_zone = geo.Point(self.x, self.y)
         if abs(self.target.x - self.x) + abs(self.target.y - self.y) < self.target.width + self.target.height:
             self.check_for_collision()
 
     def check_for_collision(self):
         if (
-            self.target.polygon.encloses_point(self.collision_zone) or
-            len(self.target.polygon.intersection(self.collision_zone)) > 0
+            self.target.polygon.AreIntersected(self.collision_zone, self.target.polygon)
         ):
             self.in_target()
 
@@ -152,7 +151,7 @@ class Kernel:  # don't panic
             self.alive = False
 
         if self.alive:
-            self.collision_zone = g.Point(self.x, self.y)
+            self.collision_zone = geo.Point(self.x, self.y)
             self.to_target()
 
     def in_target(self):  # monster attack linked with monster effects

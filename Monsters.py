@@ -1,5 +1,6 @@
 from collections import deque
-import sympy.geometry as g
+#import sympy.geometry as g
+import Geometry as geo
 
 MAX_MONSTER_SPEED = 21
 MIN_MONSTER_SPEED = 21
@@ -214,7 +215,7 @@ class Monster:
         y = self.y
         w = self.width - 1
         h = self.height - 1
-        return g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
+        return geo.Rectangle(x,y,w,h)#//g.polygon.Polygon(g.Point(x, y), g.Point(x + w, y), g.Point(x + w, y + h), g.Point(x, y + h))
 
     def refresh(self):
         if not self.alive:

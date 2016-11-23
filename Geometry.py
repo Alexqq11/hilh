@@ -3,20 +3,23 @@ class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
+        self.Top = y
+        self.Bottom = y
+        self.Left = x
+        self.Right = x
 
 class Rectangle:
     def __init__(self, x , y, width, height):
-        self.top = y
-        self.bottom = y + height
-        self.left = x
-        self.right = x + width
+        self.Top = y
+        self.Bottom = y + height
+        self.Left = x
+        self.Right = x + width
 
     def AreIntersected(self, r1, r2):
         return ((r1.Bottom >= r2.Top) and (r1.Right >= r2.Left) and (r1.Left <= r2.Right) and (r1.Top <= r2.Bottom))
 
-    def Square(self, r1, r2):
-        return (((r2.Bottom <= r1.Bottom) & & (r2.Top >= r1.Top)) & & (r2.Left >= r1.Left) & & (r2.Right <= r1.Right))
+    def get_area(self, r1, r2):
+        return (((r2.Bottom <= r1.Bottom) and (r2.Top >= r1.Top)) and (r2.Left >= r1.Left) and (r2.Right <= r1.Right))
     def IntersectionSquare(self, r1, r2):
         intersected = self.AreIntersected(r1, r2)
         area = 0
@@ -38,11 +41,11 @@ class Rectangle:
         return ((abs(r1.Top - r1.Bottom)) * (abs(r1.Right - r1.Left)))
 
     def IndexOfInnerRectangle(self, r1, r2):
-        if (self.Square(r1, r2) and  (not (self.Square(r2, r1)))):
+        if (self.get_area(r1, r2) and  (not (self.get_area(r2, r1)))):
             return 1
-        elif ((not (self.Square(r1, r2)) and self.Square(r2, r1))):
+        elif ((not (self.get_area(r1, r2)) and self.get_area(r2, r1))):
             return 0
-        elif (self.Square(r1, r2) and self.Square(r2, r1)):
+        elif (self.get_area(r1, r2) and self.get_area(r2, r1)):
             return 0
         else:
             return -1
