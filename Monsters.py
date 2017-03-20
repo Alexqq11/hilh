@@ -40,7 +40,7 @@ class MonsterWay:  # todo normal point now tuple with pairs x y
 class MonsterWave:
     def __init__(self, world, monster_amount, monster_time_interval):
         self.monster_way = MonsterWay()
-        self.monsters_lobby = deque(Monster(world, self, -5, -5) for x in range(0, monster_amount))
+        self.monsters_lobby = deque(Monster(world, self, -5, -5) for _ in range(0, monster_amount))
         self.monster_time_interval = monster_time_interval
         self.monsters_on_map = []  # deque()
         self.world = world
@@ -61,7 +61,7 @@ class MonsterWave:
                     monster.monster_loot = None
                 self.monsters_on_map.remove(monster)
             monster.refresh()
-            self.health_on_map += max(monster.health, 0)
+            self.health_on_map += max(int(monster.health), 0)
         self.monster_wave_health = len(self.monsters_lobby) * 20 + self.health_on_map
         self.health_on_map = 0
         self.world.player.wave_health = self.monster_wave_health

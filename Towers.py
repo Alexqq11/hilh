@@ -60,7 +60,7 @@ class Tower:
         return 0 <= self.x <= window_width + self.width and 0 <= self.y <= window_height + self.height
 
     def in_checker_zone(self, monster):
-        return (self.attack_zone.AreIntersected(self.attack_zone, monster.polygon) and monster.is_can_be_attacked(self.enemy))
+        return (self.attack_zone.are_intersected(self.attack_zone, monster.polygon) and monster.is_can_be_attacked(self.enemy))
 
 
     def attack(self, monster):
@@ -142,7 +142,7 @@ class Kernel:  # don't panic
 
     def check_for_collision(self):
         if (
-            self.target.polygon.AreIntersected(self.collision_zone, self.target.polygon)
+            self.target.polygon.are_intersected(self.collision_zone, self.target.polygon)
         ):
             self.in_target()
 

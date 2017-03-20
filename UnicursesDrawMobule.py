@@ -551,7 +551,6 @@ if __name__ == "__main__":
     start_color()
     use_default_colors()
     nodelay(stdscr, True)
-
     init_pair(1, COLOR_BLACK, COLOR_WHITE)
     init_pair(2, COLOR_WHITE, COLOR_BLUE)
     init_pair(3, COLOR_BLACK, COLOR_BLUE)
